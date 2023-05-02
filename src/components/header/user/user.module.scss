@@ -1,0 +1,35 @@
+.wrapp {
+  display: flex;
+  justify-self: end;
+  gap: .625rem;
+}
+
+.image {
+  position: relative;
+  width: 3rem;
+  height: 3rem;
+  border-radius: var(--radius-50p);
+  overflow: hidden;
+
+  & img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+}
+
+.info {
+  padding-top: .1875rem;
+  font-size: .8125rem;
+
+  & p {
+    font-weight: 600;
+  }
+
+  & span {
+    color: var(--gray-300);
+  }
+}

@@ -1,0 +1,23 @@
+.wrapp {
+  display: flex;
+  align-items: center;
+  justify-self: end;
+  gap: .625rem;
+}
+
+.time {
+  & span {
+    font-size: 2rem;
+    font-weight: 500;
+  }
+}
+
+.date {
+  font-size: .8125rem;
+
+  &__row {
+    display: flex;
+    align-items: center;
+    gap: .3125rem;
+  }
+}
