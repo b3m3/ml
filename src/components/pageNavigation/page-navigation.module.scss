@@ -1,0 +1,13 @@
+.wrapp {
+  margin-bottom: 1.875rem;
+  
+  & ul {
+    display: flex;
+    align-items: center;
+    gap: .625rem;
+    justify-content: center;
+  }
+  & li {
+    font-weight: 500;
+  }
+}
