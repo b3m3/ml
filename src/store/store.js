@@ -1,9 +1,13 @@
 import { configureStore } from "@reduxjs/toolkit";
-import currentCategorySlice from "./slices/currentCategorySlice";
+import authSlice from "./slices/authSlice";
+import fetchDataSlice from "./slices/fetchDataSlice";
+import activePageSlice from "./slices/activePageSlice";
 
 const store = configureStore({
   reducer: {
-    category: currentCategorySlice
+    auth: authSlice,
+    fetchData: fetchDataSlice,
+    activePage: activePageSlice
   }
 })
 
