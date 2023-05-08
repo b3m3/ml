@@ -1,0 +1,23 @@
+.wrapp {
+  margin-top: 1.875rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1.875rem;
+}
+
+.body {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(125px, 1fr));
+  grid-column-gap: .75rem;
+  grid-row-gap: 1.5625rem;
+}
+
+.bottom {
+  margin-top: 1.875rem;
+  
+  & ul {
+    display: flex;
+    justify-content: center;
+    gap: 1.25rem;
+  }
+}
