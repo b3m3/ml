@@ -1,17 +1,31 @@
+import { useSelector } from 'react-redux';
+import { IMG_ROOT } from '../../../constants/api';
+
 import style from './user.module.scss';
 
 const User = () => {
-  return (
-    <div className={style.wrapp}>
-      <div className={style.image}>
-        <img src="https://m.media-amazon.com/images/M/MV5BMTIzNTg5MzcyNV5BMl5BanBnXkFtZTYwMzAzNzAz._V1_.jpg" alt="User avatar" />
-      </div>
+  const { data, isAuth } = useSelector(state => state.auth);
 
-      <div className={style.info}>
-        <p>Username</p>
-        <span>userdata</span>
-      </div>
-    </div>
+  const imgUrl = data && data.avatar.tmdb.avatar_path;
+  const username = data && data.username;
+  const conutry = data && data.iso_3166_1;
+
+  return (
+    <>
+      {
+        isAuth &&
+          <div className={style.wrapp}>
+            <div className={style.image}>
+              <img src={imgUrl && `${IMG_ROOT}/w500${imgUrl}`} alt="User avatar"/>
+            </div>
+
+            <div className={style.info}>
+              <p>{username && username[0].toUpperCase() + username.slice(1)}</p>
+              <span>{conutry}</span>
+            </div>
+          </div>
+      }
+    </>
   );
 }
 

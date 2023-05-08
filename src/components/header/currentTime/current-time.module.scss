@@ -6,14 +6,17 @@
 }
 
 .time {
+  display: flex;
+  align-items: center;
+  gap: .125rem;
   & span {
-    font-size: 2rem;
+    font-size: 1.7rem;
     font-weight: 500;
   }
 }
 
 .date {
-  font-size: .8125rem;
+  font-size: .75rem;
 
   &__row {
     display: flex;

@@ -1,14 +1,20 @@
 .wrapp {
   display: flex;
   align-items: center;
-  height: 40px;
+  height: 2.5rem;
   color: var(--gray-300);
+  border: 1px solid var(--gray-100);
+  border-radius: var(--radius-6);
+  padding: 0 .625rem;
+  width: 100%;
+  overflow: hidden;
 
   & input {
     height: 100%;
     width: 100%;
     padding: 0 .625rem;
     font-size: 1rem;
+    background: transparent;
 
     &::placeholder {
       color: var(--gray-300);

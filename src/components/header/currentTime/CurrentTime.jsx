@@ -8,7 +8,7 @@ const CurrentTime = () => {
     <div className={style.wrapp}>
       <div className={style.time}>
         <span>09</span>
-        <span> : </span>
+        <span>:</span>
         <span>27</span>
       </div>
       <div className={style.date}>

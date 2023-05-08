@@ -1,11 +1,8 @@
 .wrapp {
-  // display: grid;
-  // align-items: center;
-  // gap: 1.25rem;
-  // grid-template: 4.75rem / 120px minmax(6.25rem, 13.75rem) auto auto;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
+  position: relative;
+  z-index: 2;
+  display: grid;
+  grid-template: minmax(4.75rem, auto) / minmax(auto, 25rem) auto;
   min-height: 4.75rem;
   gap: 1.25rem;
 }
@@ -14,45 +11,8 @@
   display: flex;
   align-items: center;
   gap: 1.875rem;
-}
 
-.logo {
-  font-weight: 700;
-  font-size: 1.5rem;
-}
-
-.navbar {
-  justify-self: center;
-
-  & ul {
-    display: flex;
-    align-items: center;
-    gap: 1.25rem;
-    font-size: 1.125rem;
-    font-weight: 600;
-    color: var(--gray-300);
+  &:nth-child(2) {
+    justify-self: end;
   }
-
-  & a {
-    position: relative;
-    display: inline-block;
-    transition: var(--transition-3);
-
-    &.active::before {
-      position: absolute;
-      content: '';
-      bottom: -4px;
-      left: 50%;
-      transform: translateX(-2px);
-      width: 4px;
-      height: 4px;
-      border-radius: 50%;
-      background: var(--blue-900);
-      transition: var(--transition-3);
-    }
-  }
-}
-
-.col {
-  justify-self: end;
 }

@@ -1,50 +1,23 @@
-import SelectCategory from './selectCategory/SelectCategory';
+import { useSelector } from 'react-redux';
 
-import style from './header.module.scss';
 import Search from './search/Search';
 import CurrentTime from './currentTime/CurrentTime';
 import User from './user/User';
 
-// const links = [
-//   {name: 'Home', path: '/'},
-//   {name: 'Movies', path: '/movie'},
-//   {name: 'Tv shows', path: '/tv'},
-//   {name: 'Actors', path: '/person'}
-// ]
-
-// const activeColor = {color: 'var(--blue-900)'};
-
-// const checkIsActive = (actionTrue, actionFalce) => {
-//   return ({isActive}) => isActive ? actionTrue : actionFalce;
-// }
-
-// <nav className={style.navbar}>
-// <ul>
-//   {
-//     links.map(({ name, path }, i) => {
-//       return (
-//         <li key={i}>
-//           <NavLink 
-//             to={path}
-//             style={checkIsActive(activeColor, null)}
-//             className={checkIsActive(style.active, '')}
-//           >
-//             {name}
-//           </NavLink>
-//         </li>
-//       )
-//     })
-//   }
-// </ul>
-// </nav>
+import style from './header.module.scss';
 
 const Header = () => {
+  const { isActivePage } = useSelector(state => state.activePage)
+
+  const wrappStyle = isActivePage ? {padding: "0 1rem"} : null;
+
   return (
-    <div className="container">
-      <header className={style.wrapp}>
+    <div className={isActivePage ? "" : "container"}>
+      <header className={style.wrapp} style={wrappStyle}>
         <div className={style.col}>
-          <SelectCategory />
-          <Search />
+          {
+            !isActivePage && <Search />
+          }
         </div>
         <div className={style.col}>
           <User />
