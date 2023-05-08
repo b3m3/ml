@@ -1,0 +1,43 @@
+.wrapp {
+  position: fixed;
+  z-index: 2;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100vh;
+  backdrop-filter: blur(.625rem);
+  background: #4e4e4e9d;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 1.875rem;
+}
+
+.body {
+  position: relative;
+  max-width: 800px;
+  max-height: 450px;
+  width: 100%;
+  height: 100%;
+
+  & iframe {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+}
+
+.back {
+  position: absolute;
+  left: 1.25rem;
+  top: 1.25rem;
+
+  & svg {
+    font-size: 2rem;
+    color: #fff;
+  }
+}
