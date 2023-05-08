@@ -1,0 +1,7 @@
+.wrapp {
+  & ul {
+    display: grid;
+    gap: .5rem;
+    grid-template-columns: repeat(auto-fit, minmax(5.3125rem, 1fr));
+  }
+}
