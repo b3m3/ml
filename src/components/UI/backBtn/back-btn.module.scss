@@ -1,0 +1,10 @@
+.btn {
+  position: absolute;
+  left: 1.25rem;
+  top: 1.25rem;
+
+  & svg {
+    font-size: 2rem;
+    border-radius: var(--radius-50p);
+  }
+}
