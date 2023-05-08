@@ -1,0 +1,103 @@
+.wrapp {
+  position: fixed;
+  z-index: 1;
+  left: 0;
+  top: 0;
+  width: 15.625rem;
+  height: 100vh;
+  padding: 0 0 2.5rem 2rem;
+  background: var(--gradient-light-blue);
+  color: var(--gray-300);
+  transition: var(--transition-3);
+  overflow: hidden;
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+  min-height: 4.75rem;
+  font-size: 1.375rem;
+  font-weight: 700;
+}
+
+.title {
+  display: block;
+  font-size: .8125rem;
+  padding: 1.875rem 0 1.25rem 0;
+  color: var(--blue-900);
+}
+
+.navbar {
+  & ul {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    gap: .75rem;
+  }
+
+  & li {
+    position: relative;
+    z-index: 2;
+    transition: var(--transition-3);
+
+    &:hover {
+      color: var(--gray-400);
+    }
+  }
+
+  & a {
+    display: grid;
+    align-items: center;
+    grid-template: auto / 2.1875rem 1fr;
+    font-weight: 500;
+    font-size: .9375rem;
+
+    &::before {
+      position: absolute;
+      z-index: 0;
+      content: '';
+      top: 0;
+      right: 1px;
+      width: 4px;
+      height: 100%;
+      background: var(--blue-400);
+      border-radius: 10px;
+      transition: var(--transition-3);
+      transform: scale(0);
+    }
+
+    & svg {
+      font-size: 1.375rem;
+    }
+    
+    &.active {
+      color: var(--blue-400);
+
+      &::before {
+        transform: scale(1);
+      }
+
+      & svg {
+        color: var(--blue-400);
+      }
+    }
+  } 
+}
+
+.button {
+  display: flex;
+  align-items: center;
+  gap: .625rem;
+  transition: var(--transition-3);
+
+  &:hover {
+    color: var(--gray-400);
+  }
+
+  & svg {
+    font-size: 1.375rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+}
