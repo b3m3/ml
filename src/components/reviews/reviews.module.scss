@@ -1,0 +1,75 @@
+.wrapp {
+  max-width: 37.5rem;
+
+  & ul {
+    display: flex;
+    flex-direction: column;
+    gap: .625rem;
+
+    & li {
+      cursor: pointer;
+      overflow: hidden;
+      height: 3.75rem;
+      display: flex;
+      gap: 12px;
+      transition: var(--transition-3);
+    }
+  }
+}
+
+.image {
+  margin-top: .625rem;
+  overflow: hidden;
+  position: relative;
+  min-width: 2.8125rem;
+  height: 2.8125rem;
+  border-radius: var(--radius-50p);
+  border: 1px solid var(--gray-100);
+
+  & img {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    left: 0;
+    top: 0;
+    object-fit: cover;
+  }
+}
+
+.body {
+  position: relative;
+  width: 100%;
+  background: var(--gradient-light-blue);
+  padding: .625rem;
+  border-radius: var(--radius-6);
+
+  & p {
+    padding-top: .3125rem;
+    font-size: .875rem;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 1;
+    -webkit-box-orient: vertical;
+  }
+}
+
+.icon {
+  position: absolute;
+  right: .3125rem;
+  top: .3125rem;
+  color: var(--gray-300);
+}
+
+.row {
+  display: flex;
+  align-items: center;
+  gap: .625rem;
+  
+  & span {
+    font-weight: 500;
+    font-size: .8125rem;
+    color: var(--gray-300);
+    display: flex;
+  }
+}
