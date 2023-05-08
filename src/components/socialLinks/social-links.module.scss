@@ -1,0 +1,15 @@
+.wrapp {
+  display: flex;
+  align-items: center;
+  gap: .4375rem;
+
+  & svg {
+    font-size: 1.125rem;
+    color: var(--blue-900);
+    transition: var(--transition-3);
+    
+    &:hover {
+      color: var(--gray-400);
+    }
+  }
+}
