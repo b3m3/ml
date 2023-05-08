@@ -23,71 +23,63 @@
 
   display: flex;
   flex-direction: column;
-  gap: .9375rem;
+  gap: 1.25rem;
 
   & h1 {
     max-width: 31.25rem;
   }
+}
 
-  &__list_n1 {
-    color: var(--gray-300);
+.box {
+  display: flex;
+  gap: .625rem;
+}
+
+.row {
+  display: flex;
+  gap: 3px;
+}
+
+.info {
+  color: var(--gray-300);
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  grid-column-gap: .8125rem;
+
+  & li {
+    position: relative;
+    font-size: .8125rem;
+    line-height: 1.5;
     display: flex;
     align-items: center;
-    flex-wrap: wrap;
-    grid-column-gap: .8125rem;
-
-    & li {
-      position: relative;
-      font-size: .8125rem;
-      line-height: 1.5;
-      display: flex;
-      align-items: center;
-      gap: 5px;
-      
-      &:not(:last-child)::before {
-        position: absolute;
-        content: '/';
-        top: 0;
-        right: -0.625rem;
-      }
-
-      & svg {
-        display: flex;
-        align-items: center;
-        font-size: 1.125rem;
-      }
-    } 
-  }
-
-  &__list_n2 {
-    display: flex;
-    align-items: center;
-    flex-wrap: wrap;
-    gap: .625rem;
-
-    & li {
-      display: flex;
-      gap: .3125rem;
-    }
-  }
-
-  &__overview {
-    & p {
-      color: var(--gray-300);
-      font-size: .875rem;
-      line-height: 1.4;
-    }
-  }
-
-  &__genres {
-    display: flex;
-    flex-wrap: wrap;
-    gap: .5rem;
+    gap: 5px;
     
-    & li {
-      font-size: .8125rem;
-      font-weight: 600;
+    &:not(:last-child)::before {
+      position: absolute;
+      content: '/';
+      top: 0;
+      right: -0.625rem;
     }
+  } 
+}
+
+.genres {
+  display: flex;
+  flex-wrap: wrap;
+  gap: .5rem;
+  
+  & li {
+    font-size: .8125rem;
+    font-weight: 600;
+  }
+}
+
+.overview {
+  & p {
+    color: var(--gray-300);
+    font-size: .875rem;
+    line-height: 1.4;
   }
 }
 

@@ -15,11 +15,14 @@ import Loading from '../../components/loading/Loading';
 import Error from '../../components/error/Error';
 
 import style from './info-movie.module.scss';
+import SocialLinks from '../../components/socialLinks/SocialLinks';
 
 const InfoMovie = () => {
   const dispatch =  useDispatch();
   const { info } = useSelector(state => state.fetchData);
   const { id } = useParams();
+
+  const params = { type: 'movie', id };
 
   useEffect(() => {
     dispatch(onActivePage(true));
@@ -43,24 +46,33 @@ const InfoMovie = () => {
             <Poster url={info.res.backdrop_path} size={'original'} />
           </div>
 
+          
           <div className={style.right}>
             <h1>{info.res.title}</h1>
-
-            <ul className={style.right__list_n1}>
+            
+            <ul className={style.info}>
               {
-                info.res.production_countries?.map(({ name }, i) => {
-                  return (
-                    <li key={i}>{name}</li>
-                  )
-                })
+                info.res.production_countries?.map(({ name }, i) => (
+                  <li key={i}>{name}</li>
+                ))
               }
 
-              <li>{info.res.status}</li>
-              <li>{info.res.release_date.slice(0, 4)}</li>
-              <li>{info.res.runtime}min</li>
+              {
+                info.res.status && <li>{info.res.status}</li>
+              }
+
+              {
+                info.res.release_date && <li>{info.res.release_date.slice(0, 4)}</li>
+              }
+
+              { 
+                info.res.runtime && <li>{info.res.runtime}min</li>
+              }
             </ul>
 
-            <ul className={style.right__genres}>
+            <SocialLinks {...params} />
+
+            <ul className={style.genres}>
               {
                 info.res.genres?.map(({ name }, i) => {
                   return (
@@ -69,29 +81,38 @@ const InfoMovie = () => {
                 })
               }
             </ul>
-
-            <ul className={style.right__list_n2}>
-              <li>
-                <AiFillStar style={{color: 'var(--gray-400)'}} />
-                {info.res.vote_average.toString().slice(0, 3)}
-              </li>
-              <li>
-                <AiFillLike style={{color: 'var(--gray-400)'}} />
-                {info.res.vote_count}
-              </li>
-            </ul>
-
-            <Cast type={'movie'} id={id} />
-            <Trailers type={'movie'} id={id} />
-
-            <div className={style.right__overview}>
-              <h5>Overview</h5>
-
-              <p>{info?.res?.overview}</p>
+            
+            <div className={style.box}>
+              {
+                info.res.vote_average &&
+                  <div className={style.row}>
+                    <AiFillStar style={{color: 'var(--gray-400)'}} />
+                    {info.res.vote_average.toString().slice(0, 3)}
+                  </div>
+              }
+              {
+                info.res.vote_count &&
+                  <div className={style.row}>
+                    <AiFillLike style={{color: 'var(--gray-400)'}} />
+                    {info.res.vote_count}
+                  </div>
+              }
             </div>
+           
 
-            <Recommendations type={'movie'} id={id} />
-            <Reviews type={'movie'} id={id} />
+            <Cast {...params} />
+            <Trailers {...params} />
+
+            {
+              info?.res?.overview && 
+                <div className={style.overview}>
+                  <h5>Overview</h5>
+                  <p>{info?.res?.overview}</p>
+                </div>
+            }
+
+            <Recommendations {...params} />
+            <Reviews {...params} />
           </div>
         </>
       }
