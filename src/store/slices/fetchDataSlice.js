@@ -10,6 +10,7 @@ const initialState = {
   cast: { loading: false, status: null, res: null },
   recommendations: { loading: false, status: null, res: null },
   reviews: { loading: false, status: null, res: null },
+  socials: { loading: false, status: null, res: null },
 }
 
 export const fetchData = createAsyncThunk(
@@ -100,6 +101,20 @@ export const fetchReviews = createAsyncThunk(
   }
 )
 
+export const fetchSocials = createAsyncThunk(
+  'fetch/fetchSocials',
+  async ({ type, id }, { rejectWithValue }) => {
+    try {
+      if (type && id) {
+        const { data } = await axios.get(`/${type}/${id}/external_ids?api_key=${API_KEY}`)
+        return data;
+      }
+    } catch (error) {
+      return rejectWithValue(error);
+    }
+  }
+)
+
 // Create extraReducer
 const createCase = (builder, func, name) => {
   builder.addCase(func.pending, (state) => {
@@ -139,6 +154,9 @@ const fetchDataSlice = createSlice({
 
     // Get reviews
     createCase(builder, fetchReviews, 'reviews');
+
+    // Get socials
+    createCase(builder, fetchSocials, 'socials');
   }
 })
 
