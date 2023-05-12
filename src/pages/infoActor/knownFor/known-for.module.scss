@@ -1,0 +1,22 @@
+.wrapp {
+  & ul {
+    overflow-x: scroll;
+    display: flex;
+    align-items: center;
+    gap: .5rem;
+    padding-bottom: .625rem;
+
+    & li {
+      min-width: 96px;
+    }
+
+    &::-webkit-scrollbar {
+      height: .4rem;
+    }
+    
+    &::-webkit-scrollbar-thumb {
+      background-color: var(--gray-200);
+      border-radius: var(--radius-6);
+    }
+  }
+}
