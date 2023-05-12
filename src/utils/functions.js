@@ -9,3 +9,7 @@ export const strToPath = (str) => {
 export const pathToStr = (path) => {
   return path[0].toUpperCase() + path.slice(1).replace('_', ' ');
 }
+
+export const unique = (arr) => {
+  return arr.filter((v, i, a) => a.findIndex(v2 => (v2.id === v.id)) === i);
+}
