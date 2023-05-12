@@ -21,6 +21,7 @@ const SocialLinks = ({ type, id }) => {
     {name: 'imdb_id', link: 'https://www.imdb.com/title/', Icon: FaImdb},
     {name: 'instagram_id', link: 'https://www.instagram.com/', Icon: RiInstagramFill},
     {name: 'twitter_id', link: 'https://twitter.com/', Icon: FaTwitterSquare},
+    {name: 'tiktok_id', link: 'https://www.tiktok.com/@', Icon: TbBrandTiktok},
   ]
 
   const renderLink = (name, linkPath, Icon) => {

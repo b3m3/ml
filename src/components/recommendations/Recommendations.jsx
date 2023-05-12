@@ -23,8 +23,9 @@ const Recommendations = ({ type, id }) => {
 
             <ul>
               {
-                recommendations?.res?.results.slice(0, 8).map(props => {
+                recommendations?.res?.results.map(props => {
                   return (
+                    !props.adult &&
                     <li key={props.id}>
                       <CardVideo {...props} noHover />
                     </li>
