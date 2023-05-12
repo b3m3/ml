@@ -13,9 +13,9 @@ import Recommendations from '../../components/recommendations/Recommendations';
 import Reviews from '../../components/reviews/Reviews';
 import Loading from '../../components/loading/Loading';
 import Error from '../../components/error/Error';
+import SocialLinks from '../../components/socialLinks/SocialLinks';
 
 import style from './info-movie.module.scss';
-import SocialLinks from '../../components/socialLinks/SocialLinks';
 
 const InfoMovie = () => {
   const dispatch =  useDispatch();
@@ -51,6 +51,8 @@ const InfoMovie = () => {
             <h1>{info.res.title}</h1>
             
             <ul className={style.info}>
+              <li>Movie</li>
+              
               {
                 info.res.production_countries?.map(({ name }, i) => (
                   <li key={i}>{name}</li>
