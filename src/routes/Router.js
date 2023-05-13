@@ -10,6 +10,8 @@ import InfoMovie from '../pages/infoMovie/InfoMovie';
 import InfoTvShows from '../pages/infoTvShows/InfoTvShows';
 import InfoActor from '../pages/infoActor/InfoActor';
 import NotFound from '../pages/notFound/NotFound';
+import TvSeason from '../pages/tvSeason/TvSeason';
+import TvEpisode from '../pages/tvEpisode/TvEpisode';
 
 const Router = () => {
   return useRoutes([
@@ -27,7 +29,19 @@ const Router = () => {
       path: 'tv',
       children: [
         { index: true, element: <TvShows /> },
-        { path: ':id', element: <InfoTvShows /> },
+        { 
+          path: ':id', 
+          children: [
+            { index: true, element: <InfoTvShows /> },
+            { 
+              path: 'season/:season_number',
+              children: [
+                { index: true, element: <TvSeason /> },
+                { path: 'episode/:episode_number', element: <TvEpisode /> }
+              ]
+            }
+          ]
+        },
         { path: ':category/:page', element: <TvShows /> },
       ] 
     },
