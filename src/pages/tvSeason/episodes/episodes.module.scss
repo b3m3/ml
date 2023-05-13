@@ -1,0 +1,49 @@
+.wrapp {
+  & ul {
+    display: flex;
+    flex-direction: column;
+    gap: .9375rem;
+    
+    & li {
+      & a {
+        display: grid;
+        gap: .625rem;
+        grid-template: auto / 2.1875rem 6.25rem 1fr;
+        align-items: center;
+  
+        cursor: pointer;
+        position: relative;
+        padding: .4375rem 1.25rem;
+        background: var(--gradient-light-blue);
+        color: var(--blue-400);
+        border-radius: var(--radius-6);
+        transition: var(--transition-3);
+  
+        &:hover {
+          color: var(--blue-400-5);
+        }
+      }
+
+      & .image {
+        position: relative;
+        width: 2.1875rem;
+        height: 2.1875rem;
+        border-radius: var(--radius-6);
+        overflow: hidden;
+      }
+
+      & h4 {
+        border-right: 1px solid var(--blue-400-5);
+      }
+
+      & p {
+        font-size: .875rem;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        display: -webkit-box;
+        -webkit-line-clamp: 1;
+        -webkit-box-orient: vertical;
+      }
+    }
+  }
+}
