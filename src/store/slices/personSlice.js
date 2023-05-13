@@ -42,6 +42,23 @@ export const fetchPersonPhotos = createAsyncThunk(
   }
 )
 
+// Create extraReducer
+const createCase = (builder, func, name) => {
+  builder.addCase(func.pending, (state) => {
+    state[`${name}`].loading = true;
+    state[`${name}`].status = null;
+    state[`${name}`].res = null;
+  })
+  builder.addCase(func.fulfilled, (state, { payload }) => {
+    state[`${name}`].loading = false;
+    state[`${name}`].res = payload;
+  })
+  builder.addCase(func.rejected, (state, { payload }) => {
+    state[`${name}`].loading = false;
+    state[`${name}`].status = payload;
+  })
+}
+
 const personSlice = createSlice({
   name: 'fetch',
   initialState,
@@ -49,36 +66,10 @@ const personSlice = createSlice({
   extraReducers: (builder) => {
 
     // Get media data
-
-    builder.addCase(fetchPersonMediaData.pending, (state) => {
-      state.mediaData.loading = true;
-      state.mediaData.status = null;
-      state.mediaData.res = null;
-    })
-    builder.addCase(fetchPersonMediaData.fulfilled, (state, { payload }) => {
-      state.mediaData.loading = false;
-      state.mediaData.res = payload;
-    })
-    builder.addCase(fetchPersonMediaData.rejected, (state, { payload }) => {
-      state.mediaData.loading = false;
-      state.mediaData.status = payload;
-    })
+    createCase(builder, fetchPersonMediaData, 'mediaData');
 
     // Get photos
-
-    builder.addCase(fetchPersonPhotos.pending, (state) => {
-      state.photos.loading = true;
-      state.photos.status = null;
-      state.photos.res = null;
-    })
-    builder.addCase(fetchPersonPhotos.fulfilled, (state, { payload }) => {
-      state.photos.loading = false;
-      state.photos.res = payload;
-    })
-    builder.addCase(fetchPersonPhotos.rejected, (state, { payload }) => {
-      state.photos.loading = false;
-      state.photos.status = payload;
-    })
+    createCase(builder, fetchPersonPhotos, 'photos');
   }
 })
 

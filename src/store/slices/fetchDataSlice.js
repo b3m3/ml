@@ -10,7 +10,7 @@ const initialState = {
   cast: { loading: false, status: null, res: null },
   recommendations: { loading: false, status: null, res: null },
   reviews: { loading: false, status: null, res: null },
-  socials: { loading: false, status: null, res: null },
+  socials: { loading: false, status: null, res: null }
 }
 
 export const fetchData = createAsyncThunk(
@@ -59,12 +59,58 @@ export const fetchTrailers = createAsyncThunk(
   }
 )
 
+export const fetchTvShowSeasonTrailers = createAsyncThunk(
+  'fetch/fetchTvShowSeasonTrailers',
+  async ({ id, season_number }, {rejectWithValue}) => {
+    try {
+      if (id && season_number) {
+        const { data } = await axios.get(`/tv/${id}/season/${season_number}/videos?api_key=${API_KEY}&language=en-US`);
+        return data;
+      }
+    } catch (error) {
+      return rejectWithValue(error);
+    }
+  }
+)
+
+export const fetchTvShowEpisodeTrailers = createAsyncThunk(
+  'fetch/fetchTvShowEpisodeTrailers',
+  async ({ id, season_number, episode_number }, {rejectWithValue}) => {
+    try {
+      if (id && season_number && episode_number) {
+        const { data } = await axios.get(
+          `/tv/${id}/season/${season_number}/episode/${episode_number}/videos?api_key=${API_KEY}&language=en-US`
+        );
+        return data;
+      }
+    } catch (error) {
+      return rejectWithValue(error);
+    }
+  }
+)
+
 export const fetchCast = createAsyncThunk(
   'fetch/fetchCast',
   async ({ type, id }, { rejectWithValue }) => {
     try {
       if (type && id) {
         const { data } = await axios.get(`/${type}/${id}/credits?api_key=${API_KEY}&language=en-US`)
+        return data;
+      }
+    } catch (error) {
+      return rejectWithValue(error);
+    }
+  }
+)
+
+export const fetchTvShowEpisodeCast = createAsyncThunk(
+  'fetch/fetchTvShowEpisodeCast',
+  async ({ season_number, episode_number, id }, { rejectWithValue }) => {
+    try {
+      if (episode_number && id && season_number) {
+        const { data } = await axios.get(
+          `/tv/${id}/season/${season_number}/episode/${episode_number}/credits?api_key=${API_KEY}&language=en-US`
+        )
         return data;
       }
     } catch (error) {
@@ -146,8 +192,17 @@ const fetchDataSlice = createSlice({
     // Get trailers
     createCase(builder, fetchTrailers, 'trailers');
 
+    // Get tv show season trailers
+    createCase(builder, fetchTvShowSeasonTrailers, 'trailers');
+
+    // Get tv show episode trailers
+    createCase(builder, fetchTvShowEpisodeTrailers, 'trailers');
+
     // Get cast
     createCase(builder, fetchCast, 'cast');
+
+    // Get tv show episode cast
+    createCase(builder, fetchTvShowEpisodeCast, 'cast');
 
     // Get recommendations
     createCase(builder, fetchRecomendations, 'recommendations');
