@@ -2,21 +2,29 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useEffect, useState } from 'react';
 
 import CardActor from '../cardActor/CardActor';
-import { fetchCast } from '../../store/slices/fetchDataSlice';
+import { fetchCast, fetchTvShowEpisodeCast } from '../../store/slices/fetchDataSlice';
 
 import { MdKeyboardArrowUp } from 'react-icons/md';
 
 import style from './cast.module.scss';
 
-const Cast = ({ type, id }) => {
+const Cast = ({ type, id, season_number, episode_number }) => {
   const [castLength, setCastLength] = useState(8);
 
   const dispatch = useDispatch();
   const { cast } = useSelector(state => state.fetchData);
   
   useEffect(() => {
-    dispatch(fetchCast({ type, id }));
-  }, [dispatch, type, id]);
+    // Get tv show or movie cast
+    if (type && id && !season_number && !episode_number) {
+      dispatch(fetchCast({ type, id }));
+    }
+
+    // Get tv show episode cast
+    if (id && season_number && episode_number && !type) {
+      dispatch(fetchTvShowEpisodeCast({ season_number, episode_number, id }));
+    }
+  }, [dispatch, type, id, season_number, episode_number]);
 
   const totalCast = cast?.res?.cast.length;
 

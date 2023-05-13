@@ -1,15 +1,15 @@
 import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
-import { fetchTrailers } from '../../store/slices/fetchDataSlice';
 import CardTrailer from './cardTrailer/CardTrailer';
 import TrailerModal from './trailerModal/TrailerModal';
+import { fetchTrailers, fetchTvShowEpisodeTrailers, fetchTvShowSeasonTrailers } from '../../store/slices/fetchDataSlice';
 
 import { MdKeyboardArrowUp } from 'react-icons/md';
 
 import style from './trailers.module.scss';
 
-const Trailers = ({ type, id }) => {
+const Trailers = ({ type, id, season_number, episode_number }) => {
   const [trailersLength, setTrailersLength] = useState(4);
   const [trailerUrl, setTrailerUrl] = useState(null);
 
@@ -17,8 +17,21 @@ const Trailers = ({ type, id }) => {
   const { trailers } = useSelector(state => state.fetchData);
 
   useEffect(() => {
-    dispatch(fetchTrailers({ type, id }));
-  }, [dispatch, type, id]);
+    // Get trailers for movies or tv shows
+    if (type && id && !episode_number) {
+      dispatch(fetchTrailers({ type, id }));
+    }
+
+    // Get trailers for tv shows seasons
+    if (season_number && id && !episode_number) {
+      dispatch(fetchTvShowSeasonTrailers({ season_number, id }))
+    }
+
+    // Get trailers for tv shows episodes
+    if (season_number && id && episode_number) {
+      dispatch(fetchTvShowEpisodeTrailers({ season_number, episode_number, id }))
+    }
+  }, [dispatch, type, season_number, episode_number, id]);
 
   const handleOpen = (url) => {
     setTrailerUrl(url);
@@ -27,6 +40,7 @@ const Trailers = ({ type, id }) => {
   const handleClose = () => {
     setTrailerUrl(null);
   }
+  
   const totalTrailers = trailers?.res?.results.length;
 
   return (
