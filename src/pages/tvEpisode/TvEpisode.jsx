@@ -32,8 +32,6 @@ const TvEpisode = () => {
     return <Error status={tvEpisode.status.message} />
   }
 
-  console.log(tvEpisode);
-
   return (
     <div className={style.wrapp}>
       {

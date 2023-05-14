@@ -35,6 +35,8 @@ const InfoActor = () => {
     return <Error status={info.status.message} />
   }
 
+  console.log(info.res);
+
   return (
     <section className={style.wrapp}>
       {
@@ -53,7 +55,11 @@ const InfoActor = () => {
                 info.res.place_of_birth && <li>{info.res.place_of_birth}</li>
               }
               {
-                info.res.birthday && <li>{info.res.birthday?.split('-').reverse().join('.')}</li>
+                info.res.birthday && 
+                  <li>
+                    {info.res.birthday?.split('-').reverse().join('.')}
+                    {info.res.deathday && ` - ${info.res.deathday.split('-').reverse().join('.')}`}
+                  </li>
               }
             </ul>
 

@@ -31,8 +31,6 @@ const TvSeason = () => {
     return <Error status={tvSeason.status.message} />
   }
 
-  console.log(tvSeason);
-
   return (
     <section className={style.wrapp}>
       {
