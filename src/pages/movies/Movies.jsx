@@ -4,7 +4,7 @@ import { useNavigate, useParams } from 'react-router-dom';
 import { fetchData } from '../../store/slices/fetchDataSlice';
 
 import CardVideo from '../../components/cardVideo/CardVideo';
-import SelectCategory from '../../components/header/selectCategory/SelectCategory';
+import SelectCategory from '../../components/filters/selectCategory/SelectCategory';
 import PageNavigation from '../../components/pageNavigation/PageNavigation';
 import Error from '../../components/error/Error';
 
