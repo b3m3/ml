@@ -1,0 +1,36 @@
+.wrapp {
+  
+  &:not(:last-child) {
+    border-bottom: 1px solid var(--gray-100);
+    padding-bottom: .625rem;
+  }
+
+  & ul {
+    display: flex;
+    flex-wrap: wrap;
+    gap: .3125rem;
+
+    & li {
+      position: relative;
+      width: 5.625rem;
+    }
+  }
+
+}
+
+.top {
+  padding-bottom: .4375rem;
+
+  & p {
+    font-weight: 500;
+    line-height: 1.5;
+  }
+}
+
+.more {
+  display: block;
+  text-align: right;
+  color: var(--blue-400);
+  font-size: .8125rem;
+  padding-top: .3125rem;
+}
