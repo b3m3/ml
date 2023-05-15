@@ -5,6 +5,7 @@ import fetchDataSlice from "./slices/fetchDataSlice";
 import activePageSlice from "./slices/activePageSlice";
 import personSlice from "./slices/personSlice";
 import tvShowSlice from "./slices/tvShowSlice";
+import searchSlice from "./slices/searchSlice";
 
 const store = configureStore({
   reducer: {
@@ -12,7 +13,8 @@ const store = configureStore({
     fetchData: fetchDataSlice,
     person: personSlice,
     tvShow: tvShowSlice,
-    activePage: activePageSlice
+    activePage: activePageSlice,
+    search: searchSlice
   }
 })
 
