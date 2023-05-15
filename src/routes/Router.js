@@ -12,6 +12,7 @@ import InfoActor from '../pages/infoActor/InfoActor';
 import NotFound from '../pages/notFound/NotFound';
 import TvSeason from '../pages/tvSeason/TvSeason';
 import TvEpisode from '../pages/tvEpisode/TvEpisode';
+import Search from '../pages/search/Search';
 
 const Router = () => {
   return useRoutes([
@@ -23,12 +24,14 @@ const Router = () => {
         { index: true, element: <Movies /> },
         { path: ':id', element: <InfoMovie /> },
         { path: ':category/:page', element: <Movies /> },
+        { path: 'search/:query/:page', element: <Search /> }
       ]
     },
     { 
       path: 'tv',
       children: [
         { index: true, element: <TvShows /> },
+        { path: 'search/:query/:page', element: <Search /> },
         { 
           path: ':id', 
           children: [
@@ -51,6 +54,7 @@ const Router = () => {
         { index: true, element: <Actors /> },
         { path: ':id', element: <InfoActor /> },
         { path: 'popular/:page', element: <Actors /> },
+        { path: 'search/:query/:page', element: <Search /> }
       ] 
     },
     { path: 'favorite', element: <Favorites /> },
