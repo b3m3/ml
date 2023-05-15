@@ -1,6 +1,6 @@
 import { useSelector } from 'react-redux';
 
-import Search from './search/Search';
+import SearchBox from './searchBox/SearchBox';
 import CurrentTime from './currentTime/CurrentTime';
 import User from './user/User';
 
@@ -16,7 +16,7 @@ const Header = () => {
       <header className={style.wrapp} style={wrappStyle}>
         <div className={style.col}>
           {
-            !isActivePage && <Search />
+            !isActivePage && <SearchBox />
           }
         </div>
         <div className={style.col}>

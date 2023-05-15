@@ -35,8 +35,6 @@ const InfoActor = () => {
     return <Error status={info.status.message} />
   }
 
-  console.log(info.res);
-
   return (
     <section className={style.wrapp}>
       {

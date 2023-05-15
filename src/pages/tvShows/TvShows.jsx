@@ -1,6 +1,6 @@
 import { useDispatch, useSelector } from 'react-redux';
 import { useEffect } from 'react';
-import { useNavigate, useParams } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 import { fetchData } from '../../store/slices/fetchDataSlice';
 
 import CardVideo from '../../components/cardVideo/CardVideo';
@@ -14,7 +14,6 @@ const categories = ['Popular', 'On the air', 'Airing today', 'Top rated'];
 
 const TvShows = () => {
   const dispatch = useDispatch();
-  const navigate = useNavigate();
   const { page, category } = useParams();
   const { res, status } = useSelector(state => state.fetchData.data);
 
@@ -26,10 +25,6 @@ const TvShows = () => {
     }
     dispatch(fetchData(doc));
   }, [dispatch, page, category]);
-
-  useEffect(() => {
-    navigate(`/tv/${category ? category : 'popular'}/${page ? page : 1}`)
-  }, [navigate, category, page]);
 
   return (
     <div className="container">
@@ -56,8 +51,8 @@ const TvShows = () => {
 
         <PageNavigation 
           totalPages={res && +res.total_pages} 
-          currentPage={+page}
-          category={category}
+          currentPage={page ? +page : 1}
+          category={'popular'}
         />
       </div>
     </div>

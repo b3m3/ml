@@ -1,8 +1,8 @@
 .wrapp {
   position: relative;
-  z-index: 2;
+  z-index: 3;
   display: grid;
-  grid-template: minmax(4.75rem, auto) / minmax(auto, 25rem) auto;
+  grid-template: minmax(4.75rem, auto) / minmax(auto, 19rem) auto;
   min-height: 4.75rem;
   gap: 1.25rem;
 }
@@ -10,7 +10,7 @@
 .col {
   display: flex;
   align-items: center;
-  gap: 1.875rem;
+  gap: 1.25rem;
 
   &:nth-child(2) {
     justify-self: end;

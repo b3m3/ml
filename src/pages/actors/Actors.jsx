@@ -1,6 +1,6 @@
 import { useDispatch, useSelector } from 'react-redux';
 import { useEffect } from 'react';
-import { useNavigate, useParams } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 import { fetchData } from '../../store/slices/fetchDataSlice';
 
 import PageNavigation from '../../components/pageNavigation/PageNavigation';
@@ -11,13 +11,8 @@ import CardActor from '../../components/cardActor/CardActor';
 
 const Actors = () => {
   const dispatch = useDispatch();
-  const navigate = useNavigate();
   const { page, category } = useParams();
   const { res, status } = useSelector(state => state.fetchData.data);
-
-  useEffect(() => {
-    navigate(`/person/popular/${page ? page : 1}`)
-  }, [navigate, category, page]);
 
   useEffect(() => {
     const doc = {
@@ -49,7 +44,7 @@ const Actors = () => {
 
         <PageNavigation 
           totalPages={res && +res.total_pages} 
-          currentPage={+page}
+          currentPage={page ? +page : 1}
           category={'popular'}
         />
       </div>

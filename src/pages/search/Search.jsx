@@ -1,44 +1,53 @@
 import { useDispatch, useSelector } from 'react-redux';
 import { useEffect } from 'react';
 import { useParams } from 'react-router-dom';
-import { fetchData } from '../../store/slices/fetchDataSlice';
 
 import CardVideo from '../../components/cardVideo/CardVideo';
-import SelectCategory from '../../components/filters/selectCategory/SelectCategory';
 import PageNavigation from '../../components/pageNavigation/PageNavigation';
 import Error from '../../components/error/Error';
+import { fetchSearchData } from '../../store/slices/searchSlice';
+import { getTypeFromPathname } from '../../utils/functions';
 
-import style from './movies.module.scss';
+import style from './search.module.scss';
+import CardActor from '../../components/cardActor/CardActor';
 
-const categories = ['Popular', 'Now playing', 'Upcoming', 'Top rated'];
-
-const Movies = () => {
+const Search = () => {
   const dispatch = useDispatch();
-  const { page, category } = useParams();
-  const { res, status } = useSelector(state => state.fetchData.data);
+
+  const { page, query } = useParams();
+  const { res, status } = useSelector(state => state.search.data);
+
+  const type = getTypeFromPathname();
+  const isActors = type === 'person';
 
   useEffect(() => {
     const doc = {
-      type: 'movie',
-      category: category ? category : 'popular',
+      type,
+      query,
       page: page ? page : 1
     }
-    dispatch(fetchData(doc));
-  }, [dispatch, page, category]);
+    
+    dispatch(fetchSearchData(doc))
+  }, [dispatch, page, type, query])
 
   return (
     <div className="container">
       <div className={style.wrapp}>
         <div className={style.top}>
-          <SelectCategory categories={categories} />
+          <h4>Search: {query}</h4>
         </div>
 
         <ul className={style.body}>
           {
-            res?.results.map(props => {
+            res?.results?.map(props => {
               return (
                 <li key={props.id}>
-                  <CardVideo {...props} />
+                  {
+                    isActors
+                    ? <CardActor {...props} />
+                    : <CardVideo {...props} />
+                  }
+                  
                 </li>
               )
             })
@@ -48,15 +57,14 @@ const Movies = () => {
         { 
           status && <Error status={status.message} />
         }
-
+        
         <PageNavigation 
           totalPages={res && +res.total_pages} 
           currentPage={page ? +page : 1}
-          category={category ? category : 'popular'}
         />
       </div>
     </div>
   );
 }
 
-export default Movies;
+export default Search;

@@ -9,10 +9,10 @@ import style from './card-video.module.scss';
 
 const CardVideo = ({ 
   id, poster_path, media_type, backdrop_path, release_date, first_air_date, 
-  title, name, vote_average, noHover, wide 
+  title, name, vote_average, noHover, wide, t
 }) => {
   const type = getTypeFromPathname();
-  
+
   return (
     <div className={style.wrapp}>
       <Link 
