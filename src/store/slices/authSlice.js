@@ -58,8 +58,6 @@ export const fetchSession = createAsyncThunk(
 
         window.localStorage.setItem('session', session_id);
       }
-
-      console.log('fetchSession', data);
   
       return data;
     } catch (error) {
@@ -82,8 +80,8 @@ export const fetchAuth = createAsyncThunk(
 
         return data;
       }
-    } catch (error) {
-      return rejectWithValue(error)
+    } catch(error) {
+      return rejectWithValue(error.error);
     }
   }
 )
@@ -125,6 +123,7 @@ const authSlice = createSlice({
 
     builder.addCase(fetchValidate.fulfilled, (state, { payload }) => {
       state.validate = payload.request_token;
+      state.status = null;
     })
     builder.addCase(fetchValidate.rejected, (state, { payload }) => {
       state.loading = false;
@@ -152,10 +151,10 @@ const authSlice = createSlice({
       state.data = payload;
       state.isAuth = payload && true;
     })
-    builder.addCase(fetchAuth.rejected, (state, { payload }) => {
+    builder.addCase(fetchAuth.rejected, (state) => {
       state.loading = false;
-      state.isAuth = false;
-      state.status = payload;
+      state.isAuth = false; 
+      window.localStorage.removeItem('session');
     })
   }
 })
