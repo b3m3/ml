@@ -34,7 +34,7 @@ const InfoMovie = () => {
   }
 
   if (info.status) {
-    return <Error status={info.status.message} />
+    return <Error status={info.status.message} page />
   }
 
   return (

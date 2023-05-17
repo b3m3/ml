@@ -3,13 +3,15 @@ import { useDispatch, useSelector } from 'react-redux';
 
 import { fetchData } from '../../../store/slices/fetchDataSlice';
 import CardUpcoming from './cardUpcoming/CardUpcoming';
+import Error from '../../../components/error/Error';
+import Loading from '../../../components/loading/Loading';
 
 import style from './upcoming.module.scss';
 
 const Upcoming = () => {
   const dispatch = useDispatch();
 
-  const { res } = useSelector(state => state.fetchData.data)
+  const { data } = useSelector(state => state.fetchData)
 
   useEffect(() => {
     const doc = {
@@ -21,27 +23,31 @@ const Upcoming = () => {
   }, [dispatch]);
 
   return (
-    <>
+    <div className={style.wrapp}>
+      <h3>Upcoming</h3>
+
       {
-        res && 
-          <div className={style.wrapp}>
-            <h3>Upcoming</h3>
-
-            <ul>
-              {
-                res.results?.slice(0, 6).map(props => {
-                  return (
-                    <li key={props.id}>
-                      <CardUpcoming {...props} />
-                    </li>
-                  )
-                })
-              }
-            </ul>
-          </div>
+        data.res && 
+          <ul>
+            {
+              data.res?.results?.slice(0, 6).map(props => {
+                return (
+                  <li key={props.id}>
+                    <CardUpcoming {...props} />
+                  </li>
+                )
+              })
+            }
+          </ul>
       }
-    </>
 
+      { data.loading && <Loading /> }
+
+      {
+        data.status && 
+          <Error status={data.status?.message} />
+      }
+    </div>
   );
 }
 

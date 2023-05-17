@@ -30,7 +30,7 @@ const Sidebar = () => {
   const wrappStyle = isActivePage ? {width: 0, padding: 0} : null;
 
   const handleLogout = () => {
-    if (window.confirm('Logout ?')) {
+    if (window.confirm('Sign out ?')) {
       dispatch(logout())
     }
   }
@@ -71,11 +71,11 @@ const Sidebar = () => {
           isAuth
             ? <button className={style.button} onClick={handleLogout}>
                 <BiLogOut />
-                <span>Logout</span>
+                <span>Sign out</span>
               </button> 
             : <Link className={style.button} to={'/login'}>
                 <BiLogIn />
-                <span>Login</span>
+                <span>Sign in</span>
               </Link> 
         }
       </div>

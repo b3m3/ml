@@ -7,11 +7,11 @@ import KnownFor from './knownFor/KnownFor';
 import Loading from '../../components/loading/Loading';
 import Error from '../../components/error/Error';
 import SocialLinks from '../../components/socialLinks/SocialLinks';
+import Photos from './photos/Photos';
 import { onActivePage } from '../../store/slices/activePageSlice';
 import { fetchDataByid } from '../../store/slices/fetchDataSlice';
 
 import style from './info-actor.module.scss';
-import Photos from './photos/Photos';
 
 const InfoActor = () => {
   const [fullBiography, setFullBiography] = useState(false);
@@ -32,7 +32,7 @@ const InfoActor = () => {
   }
 
   if (info.status) {
-    return <Error status={info.status.message} />
+    return <Error status={info.status.message} page />
   }
 
   return (

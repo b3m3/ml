@@ -28,7 +28,7 @@ const TvSeason = () => {
   }
 
   if (tvSeason.status) {
-    return <Error status={tvSeason.status.message} />
+    return <Error status={tvSeason.status.message} page />
   }
 
   return (

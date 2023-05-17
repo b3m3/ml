@@ -1,12 +1,14 @@
 import CardVideo from '../../../cardVideo/CardVideo';
 import CardActor from '../../../cardActor/CardActor';
+import Loading from '../../../loading/Loading';
 
-import style from './list-items.module.scss';
 import { Link } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import { clearSearchData } from '../../../../store/slices/searchSlice';
 
-const ListItems = ({ title, value, results, clearValue }) => {
+import style from './list-items.module.scss';
+
+const ListItems = ({ title, value, results, clearValue, loading }) => {
   const dispatch = useDispatch();
 
   const isActors = title?.toLowerCase() === 'actors';
@@ -26,35 +28,39 @@ const ListItems = ({ title, value, results, clearValue }) => {
     <>
       {
         Boolean(results?.length) &&         
-        <div className={style.wrapp}>
-          <div className={style.top}>
-            <p>{title}</p>
-          </div>
+          <div className={style.wrapp}>
+            <div className={style.top}>
+              <p>{title}</p>
+            </div>
 
-          <ul>
-            {
-              results?.slice(0, 3).map(props => {
-                return (
-                  <li key={props.id}>
-                    {
-                      isActors
-                      ? <CardActor {...props} noHover /> 
-                      : <CardVideo {...props} noHover media_type={media_type} />
-                    }
-                  </li>
-                )
-              })
-            }
-          </ul>
+            <ul>
+              {
+                results?.slice(0, 3).map(props => {
+                  return (
+                    <li key={props.id}>
+                      {
+                        isActors
+                        ? <CardActor {...props} noHover /> 
+                        : <CardVideo {...props} noHover media_type={media_type} />
+                      }
+                    </li>
+                  )
+                })
+              }
+            </ul>
 
-          <Link
+            <Link
               className={style.more}
               to={`/${media_type}/search/${value}/1`}
               onClick={handleClick}
             >
               Get more results...
             </Link>
-        </div>
+          </div>
+      }
+
+      {
+        loading && <Loading />
       }
     </>
   );

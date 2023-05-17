@@ -29,7 +29,7 @@ const TvEpisode = () => {
   }
 
   if (tvEpisode.status) {
-    return <Error status={tvEpisode.status.message} />
+    return <Error status={tvEpisode.status.message} page />
   }
 
   return (

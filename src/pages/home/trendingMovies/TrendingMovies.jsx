@@ -2,8 +2,11 @@ import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { fetchTrendingMovies } from '../../../store/slices/trendingSlice';
 
-import style from './trending-movies.module.scss';
 import TrendingCardMovie from './trendingCardMovie/TrendingCardMovie';
+import Error from '../../../components/error/Error';
+import Loading from '../../../components/loading/Loading';
+
+import style from './trending-movies.module.scss';
 
 const TrendingMovies = () => {
   const [movieSlice, setMovieSlice] = useState(1);
@@ -43,6 +46,13 @@ const TrendingMovies = () => {
               }
             </ul>
           </div>
+      }
+
+      { trendingMovies.loading && <Loading /> }
+
+      {
+        trendingMovies.status && 
+          <Error status={trendingMovies.status?.message} />
       }
     </>
   );

@@ -33,7 +33,7 @@ const SearchBox = () => {
 
   const clearValue = () => {
     setValue('')
-  }
+  };
 
   const isResults = Boolean(movies.res?.results?.length) 
     || Boolean(tvShows.res?.results?.length) 
@@ -72,6 +72,7 @@ const SearchBox = () => {
                     results={results[i].res?.results} 
                     value={value}
                     clearValue={clearValue}
+                    loading={results[i].loading}
                   />
                 )
               })

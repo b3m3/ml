@@ -2,6 +2,8 @@ import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
 import CardActor from '../../../components/cardActor/CardActor';
+import Loading from '../../../components/loading/Loading';
+import Error from '../../../components/error/Error';
 import { fetchTrendingPersons } from '../../../store/slices/trendingSlice';
 
 import style from './trending-actors.module.scss';
@@ -16,7 +18,9 @@ const TrendingActors = () => {
   }, [dispatch]);
 
   return (
-    <>
+    <div className={style.wrapp}>
+      <h3>Trending Actors</h3>
+
       {
         trendingPersons.res && 
           <ul className={style.list}>
@@ -31,7 +35,14 @@ const TrendingActors = () => {
             }
           </ul>
       }
-    </>
+
+      { trendingPersons.loading && <Loading /> }
+
+      {
+        trendingPersons.status && 
+          <Error status={trendingPersons.status?.message} />
+      }
+    </div>
   );
 }
 

@@ -7,6 +7,7 @@ import CardVideo from '../../components/cardVideo/CardVideo';
 import SelectCategory from '../../components/filters/selectCategory/SelectCategory';
 import PageNavigation from '../../components/pageNavigation/PageNavigation';
 import Error from '../../components/error/Error';
+import Loading from '../../components/loading/Loading';
 
 import style from './movies.module.scss';
 
@@ -15,7 +16,7 @@ const categories = ['Popular', 'Now playing', 'Upcoming', 'Top rated'];
 const Movies = () => {
   const dispatch = useDispatch();
   const { page, category } = useParams();
-  const { res, status } = useSelector(state => state.fetchData.data);
+  const { res, status, loading } = useSelector(state => state.fetchData.data);
 
   useEffect(() => {
     const doc = {
@@ -32,28 +33,37 @@ const Movies = () => {
         <div className={style.top}>
           <SelectCategory categories={categories} />
         </div>
+        
+        {
+          res &&
+            <>
+              <ul className={style.body}>
+                {
+                  res?.results.map(props => {
+                    return (
+                      <li key={props.id}>
+                        <CardVideo {...props} />
+                      </li>
+                    )
+                  })
+                }
+              </ul>
 
-        <ul className={style.body}>
-          {
-            res?.results.map(props => {
-              return (
-                <li key={props.id}>
-                  <CardVideo {...props} />
-                </li>
-              )
-            })
-          }
-        </ul>
-
-        { 
-          status && <Error status={status.message} />
+              <PageNavigation 
+                totalPages={res && +res.total_pages} 
+                currentPage={page ? +page : 1}
+                category={category ? category : 'popular'}
+              />
+            </>
         }
 
-        <PageNavigation 
-          totalPages={res && +res.total_pages} 
-          currentPage={page ? +page : 1}
-          category={category ? category : 'popular'}
-        />
+        { 
+          status && <Error status={status.message} page />
+        }
+
+        {
+          loading && <Loading />
+        }
       </div>
     </div>
   );

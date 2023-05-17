@@ -9,9 +9,11 @@ const CardUpcoming = ({ id, poster_path, title }) => {
   const [results, setResults] = useState(null);
 
   useEffect(() => {
-    axios.get(`/movie/${id}?api_key=${process.env.REACT_APP_API_KEY}&language=en`)
-      .then(data => setResults(data.data))
-      .catch(err => console.log(err));
+    if (id) {
+      axios.get(`/movie/${id}?api_key=${process.env.REACT_APP_API_KEY}&language=en`)
+        .then(data => setResults(data.data))
+        .catch(err => console.log(err));
+    }
   }, [id]);
 
   return (

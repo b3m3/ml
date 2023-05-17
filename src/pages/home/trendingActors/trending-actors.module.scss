@@ -1,7 +1,13 @@
-.list {
+.wrapp {
   margin-top: 2.5rem;
-  display: grid;
-  gap: 1.25rem;
-  grid-template-columns: repeat(auto-fit, minmax(65px, 1fr));
-  padding-bottom: .625rem;
+  display: flex;
+  flex-direction: column;
+  gap: .9375rem;
+
+  & ul {
+    display: grid;
+    gap: 1.25rem;
+    grid-template-columns: repeat(auto-fit, minmax(65px, 1fr));
+    padding-bottom: .625rem;
+  }
 }

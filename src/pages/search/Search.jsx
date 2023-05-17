@@ -5,6 +5,7 @@ import { useParams } from 'react-router-dom';
 import CardVideo from '../../components/cardVideo/CardVideo';
 import PageNavigation from '../../components/pageNavigation/PageNavigation';
 import Error from '../../components/error/Error';
+import Loading from '../../components/loading/Loading';
 import { fetchSearchData } from '../../store/slices/searchSlice';
 import { getTypeFromPathname } from '../../utils/functions';
 
@@ -15,7 +16,7 @@ const Search = () => {
   const dispatch = useDispatch();
 
   const { page, query } = useParams();
-  const { res, status } = useSelector(state => state.search.data);
+  const { res, status, loading } = useSelector(state => state.search.data);
 
   const type = getTypeFromPathname();
   const isActors = type === 'person';
@@ -37,31 +38,40 @@ const Search = () => {
           <h4>Search: {query}</h4>
         </div>
 
-        <ul className={style.body}>
-          {
-            res?.results?.map(props => {
-              return (
-                <li key={props.id}>
-                  {
-                    isActors
-                    ? <CardActor {...props} />
-                    : <CardVideo {...props} />
-                  }
-                  
-                </li>
-              )
-            })
-          }
-        </ul>
+        {
+          res &&
+            <>
+              <ul className={style.body}>
+                {
+                  res?.results?.map(props => {
+                    return (
+                      <li key={props.id}>
+                        {
+                          isActors
+                          ? <CardActor {...props} />
+                          : <CardVideo {...props} />
+                        }
+                        
+                      </li>
+                    )
+                  })
+                }
+              </ul>
+
+              <PageNavigation 
+                totalPages={res && +res.total_pages} 
+                currentPage={page ? +page : 1}
+              />
+            </>
+        }
 
         { 
           status && <Error status={status.message} />
         }
-        
-        <PageNavigation 
-          totalPages={res && +res.total_pages} 
-          currentPage={page ? +page : 1}
-        />
+
+        {
+          loading && <Loading />
+        }
       </div>
     </div>
   );
