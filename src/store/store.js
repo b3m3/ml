@@ -6,6 +6,7 @@ import activePageSlice from "./slices/activePageSlice";
 import personSlice from "./slices/personSlice";
 import tvShowSlice from "./slices/tvShowSlice";
 import searchSlice from "./slices/searchSlice";
+import trendingSlice from "./slices/trendingSlice";
 
 const store = configureStore({
   reducer: {
@@ -14,7 +15,8 @@ const store = configureStore({
     person: personSlice,
     tvShow: tvShowSlice,
     activePage: activePageSlice,
-    search: searchSlice
+    search: searchSlice,
+    trending: trendingSlice
   }
 })
 
