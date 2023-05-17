@@ -1,5 +1,6 @@
 .wrapp {
-  
+  position: relative;
+  z-index: 6;
   &:not(:last-child) {
     border-bottom: 1px solid var(--gray-100);
     padding-bottom: .625rem;

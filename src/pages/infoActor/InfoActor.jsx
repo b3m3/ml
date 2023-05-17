@@ -28,7 +28,7 @@ const InfoActor = () => {
   }, [dispatch, id]);
 
   if (info.loading) {
-    return <Loading />
+    return <Loading page />
   }
 
   if (info.status) {

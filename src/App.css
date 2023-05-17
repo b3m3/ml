@@ -27,6 +27,7 @@
   --red-300-1: rgba(237, 43, 42, .1);
   --transition-3: .3s ease-out;
   --radius-6: .375rem;
+  --radius-25: 1.5625rem;
   --radius-50p: 50%;
   --gradient-light-blue: linear-gradient(135deg, rgba(255,255,255,1) 0%, rgba(239,242,247,1) 100%);
 }
@@ -54,9 +55,9 @@ body {
 .App {
   display: flex;
   display: grid;
-  grid-template: auto / 15.625rem 1fr;
-  min-height: 100%;
+  grid-template: auto / 15.625rem minmax(17.8125rem, 1fr);
   gap: 1.25rem;
+  min-height: 100%;
 }
 
 .App-main {
@@ -86,6 +87,10 @@ h1 {
   text-transform: uppercase;
   font-weight: 800;
   font-size: calc(28px + calc(44 - 28) * ((100vw - 320px) / (2560 - 320)));
+}
+
+h3 {
+  font-weight: 600;
 }
 
 h4 {

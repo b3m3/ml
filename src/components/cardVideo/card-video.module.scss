@@ -12,7 +12,7 @@
     content: '';
     left: 50%;
     top: 50%;
-    transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%) scale(1.4);
     color: #fff;
     font-size: 2rem;
     opacity: 0;
@@ -36,11 +36,12 @@
     @media (any-hover: hover) {
       &:hover {
         transform: translateY(-10px);
-    
+        
         &::before {
           opacity: .5;
         }
         & svg {
+          transform: translate(-50%, -50%) scale(1);
           opacity: 1;
         }
       }

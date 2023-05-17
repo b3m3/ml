@@ -25,7 +25,7 @@ const TvEpisode = () => {
   }, [dispatch, id, season_number, episode_number]);
 
   if (tvEpisode.loading) {
-    return <Loading />
+    return <Loading page />
   }
 
   if (tvEpisode.status) {

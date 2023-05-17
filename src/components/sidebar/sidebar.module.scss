@@ -5,19 +5,11 @@
   top: 0;
   width: 15.625rem;
   height: 100vh;
-  padding: 0 0 2.5rem 2rem;
+  padding: .625rem 0 2.5rem 2rem;
   background: var(--gradient-light-blue);
   color: var(--gray-300);
   transition: var(--transition-3);
   overflow: hidden;
-}
-
-.logo {
-  display: flex;
-  align-items: center;
-  min-height: 4.75rem;
-  font-size: 1.375rem;
-  font-weight: 700;
 }
 
 .title {

@@ -1,5 +1,8 @@
 import { NavLink, Link, useLocation } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
+import { useEffect } from 'react';
+
+import { onActivePage } from '../../store/slices/activePageSlice';
 import { logout } from '../../store/slices/authSlice';
 
 import { RiMovie2Line } from 'react-icons/ri';
@@ -8,8 +11,7 @@ import { BiCameraMovie, BiHomeSmile, BiLogIn, BiLogOut } from 'react-icons/bi';
 import { BsPeople } from 'react-icons/bs';
 
 import style from './sidebar.module.scss';
-import { useEffect } from 'react';
-import { onActivePage } from '../../store/slices/activePageSlice';
+import Logo from '../logo/Logo';
 
 const Sidebar = () => {
   const dispatch = useDispatch();
@@ -39,9 +41,7 @@ const Sidebar = () => {
 
   return (
     <aside className={style.wrapp} style={wrappStyle}>
-      <div className={style.logo}>
-        <img src="" alt="" />
-      </div>
+      <Logo />
 
       <nav className={style.navbar}>
         <p className={style.title}>Menu</p>
