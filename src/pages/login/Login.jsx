@@ -3,6 +3,10 @@ import { useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 
 import BackBtn from '../../components/UI/backBtn/BackBtn';
+import Loading from '../../components/loading/Loading';
+import Logo from '../../components/logo/Logo';
+import Poster from '../../components/poster/Poster';
+import { fetchData } from '../../store/slices/fetchDataSlice';
 import { fetchSession, fetchToken, fetchValidate, fetchAuth } from '../../store/slices/authSlice';
 
 import style from './login.module.scss';
@@ -14,12 +18,22 @@ const Login = () => {
 
   const navigate = useNavigate();
   const dispatch = useDispatch();
+  
   const { loading, status, token, validate, isAuth } = useSelector(state => state.auth);
-
+  const { data } = useSelector(state => state.fetchData);
+  
+  const isCheckedStyle = {background: 'var(--blue-400)', border: '2px solid #fff'}
+  const disabledStyle = {opacity: '.65', pointerEvents: 'none'}
+  const isValue = username.length > 3 && password.length > 5;
+  
   const handleSubmit = (event) => {
     event.preventDefault();
     dispatch(fetchToken());
   };
+
+  useEffect(() => {
+    dispatch(fetchData({type: 'movie', category: 'popular', page: 1}))
+  }, [dispatch])
 
   useEffect(() => {
     if (token) {
@@ -46,12 +60,29 @@ const Login = () => {
 
       <BackBtn ligth />
 
+      {
+        data.res &&
+          <ul className={style.background}>
+            {
+              data.res?.results?.slice(0, 12).map(({ id, backdrop_path }) => {
+                return (
+                  <li key={id}>
+                    <Poster url={backdrop_path} size={'w500'} />
+                  </li>
+                )
+              })
+            }
+          </ul>
+      }
+
       <div className={style.body}>
         <div className={style.logo}>
-          MoviesLib
+          <Logo />
         </div>
 
-        {status && status !== 'ok' && <p className={style.status}>{status}</p>}
+        {
+          status && <p className={style.status}>{status}</p>
+        }
 
         <form onSubmit={handleSubmit} className={style.form}>
           <div className={style.row}>
@@ -79,7 +110,11 @@ const Login = () => {
           </div>
 
           <div className={style.row}>
-            <input 
+            <span 
+              onClick={() => setRemember(c => !c)}
+              style={remember ? isCheckedStyle : null}
+            />
+            <input
               type="checkbox" 
               name="checkbox" 
               id="checkbox"
@@ -90,18 +125,16 @@ const Login = () => {
           </div>
 
           <div className={style.row}>
-            <button type="submit">
               {
                 loading 
-                  ? 'Load...'
-                  : <span>Log in</span>
+                  ? <Loading />
+                  : <button type="submit" style={!isValue ? disabledStyle : null}>Sign in</button>
               }
-            </button>
           </div>
 
           <div className={style.row}>
             <span>Don't have an account ? </span>
-            <a href="https://www.themoviedb.org/signup" target="__blank">Sing up</a>
+            <a href="https://www.themoviedb.org/signup" target="__blank">Sign up</a>
           </div>
         </form>
       </div>
