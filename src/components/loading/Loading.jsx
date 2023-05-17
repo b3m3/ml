@@ -6,7 +6,7 @@ import style from './loading.module.scss';
 
 const Loading = ({ page }) => {
   return (
-    <div className={style.wrapp}>
+    <div className={`${style.wrapp} ${page && style.page}`}>
       {
         page 
           ? <>
