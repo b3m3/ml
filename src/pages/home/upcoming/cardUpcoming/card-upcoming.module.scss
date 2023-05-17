@@ -1,0 +1,55 @@
+.wrapp {
+  position: relative;
+  background: var(--gray-50);
+  border-radius: var(--radius-25);
+  overflow: hidden;
+  display: grid;
+  grid-template: 7.5rem / 5.625rem 1fr;
+}
+
+.top {
+  display: block;
+  position: relative;
+}
+
+.body {
+  padding: .625rem;
+  align-self: center;
+
+  & h3 {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 1;
+    -webkit-box-orient: vertical;
+  }
+
+  & ul {
+    padding-top: .3125rem;
+    display: flex;
+    flex-wrap: wrap;
+    grid-column-gap: .5rem;
+    color: var(--gray-300);
+
+    & li {
+      position: relative;
+      font-size: .8125rem;
+
+      &:not(:last-child) {
+        &::before {
+          position: absolute;
+          content: '/';
+          right: -8px;
+          top: 0;
+        }
+      }
+    }
+  }
+}
+
+.time {
+  position: absolute;
+  right: 15px;
+  top: 15px;
+  color: var(--gray-300);
+}

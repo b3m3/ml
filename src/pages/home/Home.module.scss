@@ -1,0 +1,12 @@
+.home {
+  padding: 1.875rem 0;
+  display: flex;
+  flex-direction: column;
+  gap: 1.875rem;
+}
+
+.box {
+  display: grid;
+  gap: 1.25rem;
+  grid-template: 18.75rem / 65% auto;
+}

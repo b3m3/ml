@@ -1,0 +1,12 @@
+.wrapp {
+  margin-top: 3.125rem;
+  display: flex;
+  flex-direction: column;
+  gap: .9375rem;
+
+  & > ul {
+    display: grid;
+    gap: .9375rem;
+    grid-template-columns: repeat(auto-fit, minmax(17.8125rem, 1fr));
+  }
+}

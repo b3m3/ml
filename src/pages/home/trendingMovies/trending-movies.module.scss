@@ -1,0 +1,35 @@
+.wrapp {
+  position: relative;
+}
+
+.navigation {
+  position: absolute;
+  z-index: 3;
+  width: 100%;
+  bottom: 0;
+  left: 0;
+  padding: 1.875rem 0 .9375rem 0;
+  
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: .625rem;
+  align-items: center;
+
+  & li {
+    padding: .125rem;
+    cursor: pointer;
+    width: .9375rem;
+    height: .25rem;
+    background: var(--gray-100);
+    transition: var(--transition-3);
+    opacity: .5;
+    border-radius: var(--radius-6);
+
+    &.active {
+      background: var(--gray-100);
+      opacity: 1;
+      width: 1.875rem;
+    }
+  }
+}
