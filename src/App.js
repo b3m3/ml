@@ -8,7 +8,7 @@ import Sidebar from './components/sidebar/Sidebar';
 
 import Router from './routes/Router';
 
-import './App.css';
+import './App.scss';
 
 function App() {
   const dispatch = useDispatch();

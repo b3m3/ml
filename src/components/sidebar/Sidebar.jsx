@@ -1,21 +1,25 @@
 import { NavLink, Link, useLocation } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 
 import { onActivePage } from '../../store/slices/activePageSlice';
 import { logout } from '../../store/slices/authSlice';
 
+import Logo from '../logo/Logo';
 import { RiMovie2Line } from 'react-icons/ri';
 import { MdOutlineFavoriteBorder } from 'react-icons/md';
 import { BiCameraMovie, BiHomeSmile, BiLogIn, BiLogOut } from 'react-icons/bi';
 import { BsPeople } from 'react-icons/bs';
+import { MdKeyboardArrowLeft, MdKeyboardArrowRight } from 'react-icons/md';
 
 import style from './sidebar.module.scss';
-import Logo from '../logo/Logo';
 
 const Sidebar = () => {
+  const [isOpen, setIsOpen] = useState(false);
+
   const dispatch = useDispatch();
   const location = useLocation();
+
   const { isAuth } = useSelector(state => state.auth);
   const { isActivePage } = useSelector(state => state.activePage);
 
@@ -27,7 +31,7 @@ const Sidebar = () => {
     {name: 'Favorite', path: '/favorite', icon: <MdOutlineFavoriteBorder />},
   ]
 
-  const wrappStyle = isActivePage ? {width: 0, padding: 0} : null;
+  const styleHide = isActivePage ? {left: '-15.9375rem'} : null;
 
   const handleLogout = () => {
     if (window.confirm('Sign out ?')) {
@@ -40,8 +44,21 @@ const Sidebar = () => {
   }, [dispatch, location]);
 
   return (
-    <aside className={style.wrapp} style={wrappStyle}>
+    <aside 
+      className={`${style.wrapp} ${isOpen ? style.open : null}`}
+      style={styleHide}
+    >
       <Logo />
+
+      <button 
+        className={style.call}
+        onClick={() => setIsOpen(a => !a)}
+        style={styleHide}
+      >
+        {
+          isOpen ? <MdKeyboardArrowLeft /> : <MdKeyboardArrowRight />
+        }
+      </button>
 
       <nav className={style.navbar}>
         <p className={style.title}>Menu</p>
@@ -53,6 +70,7 @@ const Sidebar = () => {
                   <NavLink
                     to={path}
                     className={({isActive}) => isActive ? style.active :  ''}
+                    onClick={() => setIsOpen(false)}
                   >
                     <span>{icon}</span> 
                     <span>{name}</span>

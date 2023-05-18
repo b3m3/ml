@@ -1,6 +1,6 @@
 .wrapp {
   position: fixed;
-  z-index: 1;
+  z-index: 5;
   left: 0;
   top: 0;
   width: 15.625rem;
@@ -9,7 +9,43 @@
   background: var(--gradient-light-blue);
   color: var(--gray-300);
   transition: var(--transition-3);
-  overflow: hidden;
+
+  @media screen and (max-width: 1024px) {
+    left: -15.625rem;
+
+    &.open {
+      left: 0;
+    }
+  }
+}
+
+.call {
+  position: absolute;
+  z-index: 6;
+  top: calc(50% - 30px);
+  right: -30px;
+  width: 30px;
+  height: 60px;
+  border-radius: 0 100% 100% 0 / 0 50% 50% 0;
+  background: mistyrose;
+
+  font-size: 2rem;
+  color: #fff;
+  background: var(--blue-400-5);
+  -webkit-ackdrop-filter: blur(3px);
+  backdrop-filter: blur(3px);
+
+  display: none;
+  align-items: center;
+  justify-content: center;
+
+  & svg {
+    pointer-events: none;
+  }
+
+  @media screen and (max-width: 1024px) {
+    display: flex;
+  }
 }
 
 .title {

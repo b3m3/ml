@@ -58,11 +58,19 @@ body {
   grid-template: auto / 15.625rem minmax(17.8125rem, 1fr);
   gap: 1.25rem;
   min-height: 100%;
+
+  @media screen and (max-width: 1024px) {
+    grid-template: auto / 1fr;
+  }
 }
 
 .App-main {
   width: 100%;
   grid-column: 2 / 3;
+
+  @media screen and (max-width: 1024px) {
+    grid-column: unset;
+  }
 }
 
 .container {
