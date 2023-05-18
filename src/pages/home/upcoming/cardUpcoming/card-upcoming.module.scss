@@ -5,6 +5,11 @@
   overflow: hidden;
   display: grid;
   grid-template: 7.5rem / 5.625rem 1fr;
+  transition: var(--transition-3);
+
+  &:hover {
+    grid-template: 7.5rem / 6.875rem 1fr;
+  }
 }
 
 .top {
@@ -23,33 +28,4 @@
     -webkit-line-clamp: 1;
     -webkit-box-orient: vertical;
   }
-
-  & ul {
-    padding-top: .3125rem;
-    display: flex;
-    flex-wrap: wrap;
-    grid-column-gap: .5rem;
-    color: var(--gray-300);
-
-    & li {
-      position: relative;
-      font-size: .8125rem;
-
-      &:not(:last-child) {
-        &::before {
-          position: absolute;
-          content: '/';
-          right: -8px;
-          top: 0;
-        }
-      }
-    }
-  }
-}
-
-.time {
-  position: absolute;
-  right: 15px;
-  top: 15px;
-  color: var(--gray-300);
 }
