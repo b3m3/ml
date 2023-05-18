@@ -29,7 +29,7 @@ const TrendingMoviesWeek = () => {
 
             <ul>
               {
-                trendingMoviesWeek.res?.results?.slice(0, 3).map(({ id, poster_path, vote_average, vote_count, title }) => {
+                trendingMoviesWeek.res?.results?.slice(0, 6).map(({ id, poster_path, vote_average, vote_count, title }) => {
                   return (
                     <li key={id}>
                       <Link to={`/movie/${id}`}>
