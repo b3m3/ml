@@ -1,0 +1,24 @@
+.wrapp {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  grid-column-gap: .9375rem;
+  
+  & li {
+    font-size: .875rem;
+    position: relative;
+    color: var(--blue-400);
+    transition: var(--transition-3);
+
+    &:hover {
+      color: var(--blue-400-5);
+    }
+  }
+
+  & > li:not(:last-child)::before {
+    position: absolute;
+    content: "•";
+    top: 0;
+    right: -0.625rem;
+  }
+}
