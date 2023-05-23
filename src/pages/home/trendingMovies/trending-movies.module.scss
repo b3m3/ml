@@ -13,23 +13,32 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: .625rem;
+  gap: .3125rem;
   align-items: center;
 
   & li {
-    padding: .125rem;
+    position: relative;
     cursor: pointer;
-    width: .9375rem;
-    height: .25rem;
-    background: var(--gray-100);
+    width: 15px;
+    height: .9375rem;
     transition: var(--transition-3);
-    opacity: .5;
-    border-radius: var(--radius-6);
+    opacity: .65;
+    
+    &::before {
+      position: absolute;
+      content: '';
+      top: 50%;
+      left: 50%;
+      width: 70%;
+      height: .25rem;
+      transform: translate(-50%, -50%);
+      background: var(--gray-100);
+      border-radius: var(--radius-6);
+    }
 
     &.active {
-      background: var(--gray-100);
       opacity: 1;
-      width: 1.875rem;
+      width: 2.5rem;
     }
   }
 }

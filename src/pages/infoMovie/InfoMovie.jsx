@@ -2,10 +2,10 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
 import { useEffect } from 'react';
 
-import Poster from '../../components/poster/Poster';
 import { onActivePage } from '../../store/slices/activePageSlice';
 import { fetchDataByid } from '../../store/slices/fetchDataSlice';
 
+import Poster from '../../components/poster/Poster';
 import Cast from '../../components/cast/Cast';
 import Trailers from '../../components/trailers/Trailers';
 import Recommendations from '../../components/recommendations/Recommendations';
@@ -13,14 +13,14 @@ import Reviews from '../../components/reviews/Reviews';
 import Loading from '../../components/loading/Loading';
 import Error from '../../components/error/Error';
 import SocialLinks from '../../components/socialLinks/SocialLinks';
-
-import style from './info-movie.module.scss';
 import Breadcrumb from '../../components/breadcrumb/Breadcrumb';
 import GeneralInfoList from '../../components/generalInfoList/GeneralInfoList';
 import Genres from '../../components/genres/Genres';
 import Rating from '../../components/rating/Rating';
 import Votes from '../../components/votes/Votes';
 import Overview from '../../components/overview/Overview';
+
+import style from './info-movie.module.scss';
 
 const InfoMovie = () => {
   const dispatch = useDispatch();
