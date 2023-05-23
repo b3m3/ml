@@ -15,9 +15,7 @@ const Header = () => {
     <div className={isActivePage ? "" : "container"}>
       <header className={style.wrapp} style={wrappStyle}>
         <div className={style.col}>
-          {
-            !isActivePage && <SearchBox />
-          }
+          { !isActivePage && <SearchBox /> }
         </div>
         <div className={style.col}>
           <User />

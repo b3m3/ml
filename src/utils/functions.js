@@ -13,3 +13,7 @@ export const pathToStr = (path) => {
 export const unique = (arr) => {
   return arr.filter((v, i, a) => a.findIndex(v2 => (v2.id === v.id)) === i);
 }
+
+export const addZero = (num) => {
+  return num < 10 ? '0' + num : num;
+}
