@@ -30,7 +30,7 @@ const Upcoming = () => {
         data.res && 
           <ul>
             {
-              data.res?.results?.slice(0, 6).map(props => {
+              data.res?.results?.slice(0, 8).map(props => {
                 return (
                   <li key={props.id}>
                     <CardUpcoming {...props} />

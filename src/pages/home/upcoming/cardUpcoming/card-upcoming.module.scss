@@ -4,11 +4,23 @@
   border-radius: var(--radius-25);
   overflow: hidden;
   display: grid;
-  grid-template: 7.5rem / 5.625rem 1fr;
+  grid-template: 6.25rem / 4.6875rem 1fr;
   transition: var(--transition-3);
 
-  &:hover {
-    grid-template: 7.5rem / 6.875rem 1fr;
+  @media (any-hover: hover) {
+    &:hover {
+      transform: translateY(-5px) skewX(-2deg);
+      box-shadow: .3125rem .3125rem .9375rem var(--gray-200);
+    }
+  }
+
+  & span {
+    position: absolute;
+    content: '';
+    top: .625rem;
+    right: .9375rem;
+    color: var(--gray-300);
+    font-size: .75rem;
   }
 }
 
@@ -21,7 +33,7 @@
   padding: .625rem;
   align-self: center;
 
-  & h3 {
+  & h5 {
     overflow: hidden;
     text-overflow: ellipsis;
     display: -webkit-box;
