@@ -8,11 +8,15 @@ import Error from '../../components/error/Error';
 
 import { onActivePage } from '../../store/slices/activePageSlice';
 import { fetchTvEpisode } from '../../store/slices/tvShowSlice';
-import { AiFillStar, AiFillLike } from 'react-icons/ai';
 
 import style from './tv-episode.module.scss';
 import Trailers from '../../components/trailers/Trailers';
 import Cast from '../../components/cast/Cast';
+import Breadcrumb from '../../components/breadcrumb/Breadcrumb';
+import Rating from '../../components/rating/Rating';
+import Votes from '../../components/votes/Votes';
+import Overview from '../../components/overview/Overview';
+import GeneralInfoList from '../../components/generalInfoList/GeneralInfoList';
 
 const TvEpisode = () => {
   const dispatch =  useDispatch();
@@ -41,51 +45,26 @@ const TvEpisode = () => {
             <Poster url={tvEpisode.res.still_path} size={'original'} />
           </div>
 
-          
           <div className={style.right}>
+            <Breadcrumb />
+
             <h1>{tvEpisode.res.name}</h1>
 
-            <ul className={style.info}>
-              <li>Tv show</li>
-              <li>{season_number === '0' ? 'Special' : `Season ${season_number}`}</li>
-              <li>{`Episode ${episode_number}`}</li>
+            <GeneralInfoList 
+              title="Tv show"
+              season_number={season_number}
+              air_date={tvEpisode.res.air_date}
+              runtime={tvEpisode.res.runtime}
+            />
 
-              {
-                tvEpisode.res.air_date && <li>{tvEpisode.res.air_date.slice(0, 4)}</li>
-              }
-
-              {
-                 tvEpisode.res.runtime && <li>{tvEpisode.res.runtime}min</li>
-              }
-            </ul>
-
-            <div className={style.box}>
-              {
-                tvEpisode.res.vote_average &&
-                  <div className={style.row}>
-                    <AiFillStar style={{color: 'var(--gray-400)'}} />
-                    {tvEpisode.res.vote_average.toString().slice(0, 3)}
-                  </div>
-              }
-              {
-                tvEpisode.res.vote_count &&
-                  <div className={style.row}>
-                    <AiFillLike style={{color: 'var(--gray-400)'}} />
-                    {tvEpisode.res.vote_count}
-                  </div>
-              }
+            <div className={style.row}>
+              <Rating vote_average={tvEpisode.res.vote_average} />
+              <Votes vote_count={tvEpisode.res.vote_count} />
             </div>
 
             <Cast id={id} season_number={season_number} episode_number={episode_number} />
             <Trailers id={id} season_number={season_number} episode_number={episode_number} />
-            
-            {
-              tvEpisode.res.overview && 
-                <div className={style.overview}>
-                  <h5>Overview</h5>
-                  <p>{tvEpisode.res.overview}</p>
-                </div>
-            }
+            <Overview overview={tvEpisode.res.overview} />
           </div>
         </>
       }

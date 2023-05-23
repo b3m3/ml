@@ -12,6 +12,9 @@ import { onActivePage } from '../../store/slices/activePageSlice';
 import { fetchTvSeason } from '../../store/slices/tvShowSlice';
 
 import style from './tv-season.module.scss';
+import Breadcrumb from '../../components/breadcrumb/Breadcrumb';
+import GeneralInfoList from '../../components/generalInfoList/GeneralInfoList';
+import Overview from '../../components/overview/Overview';
 
 const TvSeason = () => {
   const dispatch =  useDispatch();
@@ -39,28 +42,19 @@ const TvSeason = () => {
           <div className={style.left}>
             <Poster url={tvSeason.res.poster_path} size={'original'} />
           </div>
-
           
           <div className={style.right}>
+            <Breadcrumb />
+
             <h1>{tvSeason.res.name}</h1>
 
-            <ul className={style.info}>
-              <li>Tv show</li>
-              <li>{season_number === '0' ? 'Special' : `Season ${season_number}`}</li>
-
-              {
-                tvSeason.res.air_date && <li>{tvSeason.res.air_date.slice(0, 4)}</li>
-              }
-            </ul>
+            <GeneralInfoList 
+              title="Tv show"
+              season_number={season_number}
+              air_date={tvSeason.res.air_date}
+            />
             
-            {
-              tvSeason.res.overview && 
-                <div className={style.overview}>
-                  <h5>Overview</h5>
-                  <p>{tvSeason.res.overview}</p>
-                </div>
-            }
-            
+            <Overview overview={tvSeason.res.overview} />
             <Trailers id={id} season_number={season_number} />
             <Episodes episodes={tvSeason.res.episodes} />
           </div>

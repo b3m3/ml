@@ -1,6 +1,6 @@
 import { useDispatch, useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
 
 import Poster from '../../components/poster/Poster';
 import KnownFor from './knownFor/KnownFor';
@@ -12,10 +12,11 @@ import { onActivePage } from '../../store/slices/activePageSlice';
 import { fetchDataByid } from '../../store/slices/fetchDataSlice';
 
 import style from './info-actor.module.scss';
+import Breadcrumb from '../../components/breadcrumb/Breadcrumb';
+import GeneralInfoList from '../../components/generalInfoList/GeneralInfoList';
+import Overview from '../../components/overview/Overview';
 
 const InfoActor = () => {
-  const [fullBiography, setFullBiography] = useState(false);
-
   const dispatch = useDispatch();
   const { info } = useSelector(state => state.fetchData);
   const { id } = useParams();
@@ -46,36 +47,18 @@ const InfoActor = () => {
 
           
           <div className={style.right}>
+            <Breadcrumb />
+
             <h1>{info.res.name}</h1>
-            
-            <ul className={style.info}>
-              {
-                info.res.place_of_birth && <li>{info.res.place_of_birth}</li>
-              }
-              {
-                info.res.birthday && 
-                  <li>
-                    {info.res.birthday?.split('-').reverse().join('.')}
-                    {info.res.deathday && ` - ${info.res.deathday.split('-').reverse().join('.')}`}
-                  </li>
-              }
-            </ul>
+
+            <GeneralInfoList 
+              place_of_birth={info.res.place_of_birth}
+              birthday={info.res.birthday}
+              deathday={info.res.deathday}
+            />
 
             <SocialLinks {...params} />
-
-            {
-              info.res.biography && 
-                <div className={style.biography}>
-                  <h5>Biography</h5>
-                  <p
-                    style={fullBiography ? {WebkitLineClamp: 'unset'} : null}
-                    onClick={() => setFullBiography(a => !a)}
-                  >
-                    {info.res.biography}
-                  </p>
-                </div>
-            }
-
+            <Overview biography={info.res.biography} />
             <Photos id={id} />
             <KnownFor id={id} />
           </div>

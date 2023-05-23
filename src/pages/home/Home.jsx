@@ -2,9 +2,9 @@ import TrendingActors from './trendingActors/TrendingActors';
 import TrendingTv from './trendingTv/TrendingTv';
 import TrendingMovies from './trendingMovies/TrendingMovies';
 import TrendingMoviesWeek from './trendingMoviesWeek/TrendingMoviesWeek';
+import Upcoming from './upcoming/Upcoming';
 
 import style from './Home.module.scss';
-import Upcoming from './upcoming/Upcoming';
 
 const Home = () => {
   return (

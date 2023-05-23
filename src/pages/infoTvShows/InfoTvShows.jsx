@@ -5,7 +5,6 @@ import { useEffect } from 'react';
 import Poster from '../../components/poster/Poster';
 import { onActivePage } from '../../store/slices/activePageSlice';
 import { fetchDataByid } from '../../store/slices/fetchDataSlice';
-import { AiFillStar, AiFillLike } from 'react-icons/ai';
 
 import Cast from '../../components/cast/Cast';
 import Trailers from '../../components/trailers/Trailers';
@@ -15,8 +14,14 @@ import Loading from '../../components/loading/Loading';
 import Error from '../../components/error/Error';
 import SocialLinks from '../../components/socialLinks/SocialLinks';
 import SeasonsList from './seasonsList/SeasonsList';
+import Breadcrumb from '../../components/breadcrumb/Breadcrumb';
+import Overview from '../../components/overview/Overview';
+import Rating from '../../components/rating/Rating';
 
 import style from './info-tv-shows.module.scss';
+import Votes from '../../components/votes/Votes';
+import Genres from '../../components/genres/Genres';
+import GeneralInfoList from '../../components/generalInfoList/GeneralInfoList';
 
 const InfoTvShows = () => {
   const dispatch =  useDispatch();
@@ -42,83 +47,40 @@ const InfoTvShows = () => {
     <section className={style.wrapp}>
       {
         info.res &&
-        <>
-          <div className={style.left}>
-            <Poster url={info.res.backdrop_path} size={'original'} />
-          </div>
-
-          
-          <div className={style.right}>
-            <h1>{info.res.original_name}</h1>
-            
-            <ul className={style.info}>
-              <li>Tv show</li>
-
-              {
-                info.res.production_countries?.map(({ name }, i) => (
-                  <li key={i}>{name}</li>
-                ))
-              }
-
-              {
-                info.res.status && <li>{info.res.status}</li>
-              }
-
-              {
-                info.res.first_air_date && <li>{info.res.first_air_date.slice(0, 4)}</li>
-              }
-
-              { 
-                info.res.episode_run_time && <li>{info.res.episode_run_time?.[0]}min</li>
-              }
-            </ul>
-
-            <SocialLinks {...params} />
-
-            <ul className={style.genres}>
-              {
-                info.res.genres?.map(({ name }, i) => {
-                  return (
-                    <li key={i}>{name}</li>
-                  )
-                })
-              }
-            </ul>
-            
-            <div className={style.box}>
-              {
-                info.res.vote_average &&
-                  <div className={style.row}>
-                    <AiFillStar style={{color: 'var(--gray-400)'}} />
-                    {info.res.vote_average.toString().slice(0, 3)}
-                  </div>
-              }
-              {
-                info.res.vote_count &&
-                  <div className={style.row}>
-                    <AiFillLike style={{color: 'var(--gray-400)'}} />
-                    {info.res.vote_count}
-                  </div>
-              }
+          <>
+            <div className={style.left}>
+              <Poster url={info.res.backdrop_path} size={'original'} />
             </div>
-           
 
-            <Cast {...params} />
-            <Trailers {...params} />
-            <SeasonsList seasons={info.res?.seasons} tvId={id} />
+            <div className={style.right}>
+              <Breadcrumb />
 
-            {
-              info?.res?.overview && 
-                <div className={style.overview}>
-                  <h5>Overview</h5>
-                  <p>{info?.res?.overview}</p>
-                </div>
-            }
+              <h1>{info.res.original_name}</h1>
 
-            <Recommendations {...params} />
-            <Reviews {...params} />
-          </div>
-        </>
+              <GeneralInfoList 
+                title="Tv show"
+                production_countries={info.res.production_countries}
+                status={info.res.status}
+                first_air_date={info.res.first_air_date}
+                episode_run_time={info.res.episode_run_time}
+              />
+
+              <SocialLinks {...params} />
+              <Genres genres={info.res.genres} />
+              
+              <div className={style.row}>
+                <Rating vote_average={info.res.vote_average} />
+                <Votes vote_count={info.res.vote_count} />
+              </div>
+
+              <Cast {...params} />
+              <Trailers {...params} />
+              <SeasonsList seasons={info.res.seasons} tvId={id} />
+              <Overview overview={info.res.overview} />
+              <Recommendations {...params} />
+              <Reviews {...params} />
+            </div>
+          </>
       }
     </section>
   );
