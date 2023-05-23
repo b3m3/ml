@@ -1,0 +1,11 @@
+.wrapp {
+  padding: 1.875rem 0 0 5%;
+
+  & h1 {
+    line-height: 1.7;
+  }
+
+  & p {
+    color: var(--gray-400);
+  }
+}

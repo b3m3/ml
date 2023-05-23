@@ -28,10 +28,11 @@ const Sidebar = () => {
     {name: 'Movies', path: `/movie`, icon: <RiMovie2Line/>},
     {name: 'Tv shows', path: '/tv', icon: <BiCameraMovie />},
     {name: 'Actors', path: '/person', icon: <BsPeople />},
-    {name: 'Favorite', path: '/favorite', icon: <MdOutlineFavoriteBorder />},
+    {name: 'Favorite', path: '/favorite', icon: <MdOutlineFavoriteBorder />}
   ]
 
   const styleHide = isActivePage ? {left: '-15.9375rem'} : null;
+  const displayFavorite = isAuth ? links.length : links.length -1;
 
   const handleLogout = () => {
     if (window.confirm('Sign out ?')) {
@@ -64,7 +65,7 @@ const Sidebar = () => {
         <p className={style.title}>Menu</p>
         <ul>
           {
-            links.map(({ name, path, icon }, i) => {
+            links.slice(0, displayFavorite).map(({ name, path, icon }, i) => {
               return (
                 <li key={i}>
                   <NavLink
