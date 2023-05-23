@@ -1,0 +1,23 @@
+.list_info {
+  color: var(--gray-300);
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  grid-column-gap: .8125rem;
+
+  & li {
+    position: relative;
+    font-size: .8125rem;
+    line-height: 1.5;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    
+    &:not(:last-child)::before {
+      position: absolute;
+      content: '/';
+      top: 0;
+      right: -0.625rem;
+    }
+  } 
+}

@@ -1,6 +1,10 @@
 .wrapp {
   max-width: 37.5rem;
 
+  @media screen and (max-width: 768px) {
+    max-width: unset;
+  }
+
   & ul {
     display: flex;
     flex-direction: column;

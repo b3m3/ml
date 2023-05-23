@@ -1,0 +1,10 @@
+.genres {
+  display: flex;
+  flex-wrap: wrap;
+  gap: .5rem;
+  
+  & li {
+    font-size: .8125rem;
+    font-weight: 600;
+  }
+}
