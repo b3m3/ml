@@ -19,12 +19,14 @@ import Genres from '../../components/genres/Genres';
 import Rating from '../../components/rating/Rating';
 import Votes from '../../components/votes/Votes';
 import Overview from '../../components/overview/Overview';
+import FavoriteBtn from '../../components/favoriteBtn/FavotireBtn';
 
 import style from './info-movie.module.scss';
 
 const InfoMovie = () => {
   const dispatch = useDispatch();
   const { info } = useSelector(state => state.fetchData);
+  const { isAuth } = useSelector(state => state.auth);
   const { id } = useParams();
 
   const params = { type: 'movie', id };
@@ -49,6 +51,7 @@ const InfoMovie = () => {
         <>
           <div className={style.left}>
             <Poster url={info.res.backdrop_path} size={'original'} />
+            { isAuth && <FavoriteBtn /> }
           </div>
 
           <div className={style.right}>
@@ -71,7 +74,6 @@ const InfoMovie = () => {
               <Rating vote_average={info.res.vote_average} />
               <Votes vote_count={info.res.vote_count} />
             </div>
-
 
             <Cast {...params} />
             <Trailers {...params} />

@@ -17,15 +17,17 @@ import SeasonsList from './seasonsList/SeasonsList';
 import Breadcrumb from '../../components/breadcrumb/Breadcrumb';
 import Overview from '../../components/overview/Overview';
 import Rating from '../../components/rating/Rating';
-
-import style from './info-tv-shows.module.scss';
 import Votes from '../../components/votes/Votes';
 import Genres from '../../components/genres/Genres';
 import GeneralInfoList from '../../components/generalInfoList/GeneralInfoList';
+import FavoriteBtn from '../../components/favoriteBtn/FavotireBtn';
+
+import style from './info-tv-shows.module.scss';
 
 const InfoTvShows = () => {
   const dispatch =  useDispatch();
   const { info } = useSelector(state => state.fetchData);
+  const { isAuth } = useSelector(state => state.auth);
   const { id } = useParams();
 
   const params = { type: 'tv', id };
@@ -50,6 +52,7 @@ const InfoTvShows = () => {
           <>
             <div className={style.left}>
               <Poster url={info.res.backdrop_path} size={'original'} />
+              { isAuth && <FavoriteBtn /> }
             </div>
 
             <div className={style.right}>

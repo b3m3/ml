@@ -6,7 +6,7 @@ const Votes = ({ vote_count }) => {
   return (
     <>
       {
-        vote_count &&
+        Boolean(vote_count) &&
           <div className={style.votes}>
             <AiFillLike style={{color: 'var(--gray-400)'}} />
             {vote_count}

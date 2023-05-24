@@ -57,7 +57,13 @@ const Router = () => {
         { path: 'search/:query/:page', element: <Search /> }
       ] 
     },
-    { path: 'favorite', element: <Favorites /> },
+    { 
+      path: 'favorite', 
+      children: [
+        { index: true, element: <Favorites /> },
+        { path: ':type', element: <Favorites /> }
+      ]
+    },
     { path: '*', element: <NotFound /> }
   ])
 }

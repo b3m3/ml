@@ -34,9 +34,9 @@ const CurrentTime = memo(() => {
   return (
     <div className={style.wrapp}>
       <div className={style.time}>
-        <span>{ hours ? addZero(hours) : '--' }</span>
+        <span>{ hours ? addZero(hours) : '00' }</span>
         <span>:</span>
-        <span>{ minutes ? addZero(minutes) : '--' }</span>
+        <span>{ minutes ? addZero(minutes) : '00' }</span>
       </div>
       <div className={style.date}>
         <div className={style.date__row}>

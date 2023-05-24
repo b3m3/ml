@@ -6,13 +6,14 @@ import { MdArrowDropDown } from 'react-icons/md';
 
 import style from './select-category.module.scss';
 
-const SelectCategory = ({ categories }) => {
+const SelectCategory = ({ categories, setFavoriteType }) => {
   const { category } = useParams();
 
   const type = getTypeFromPathname();
+  const setCategory = category ? pathToStr(category) : categories[0];
 
   const [isOpen, setIsOpen] = useState(false);
-  const [selectedCategory, setCurrentCategory] = useState(category ? pathToStr(category) : 'Popular');
+  const [selectedCategory, setCurrentCategory] = useState(setCategory);
 
   return (
     <div className={style.wrapp}>
@@ -29,6 +30,7 @@ const SelectCategory = ({ categories }) => {
                 key={i} 
                 onClick={() => {
                   setCurrentCategory(el);
+                  setFavoriteType(el)
                   setIsOpen(false);
                 }}
               >

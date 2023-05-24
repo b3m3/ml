@@ -29,10 +29,10 @@ const CardVideo = ({
 
         <div className={style.body__row}>
           {
-            !noHover && vote_average &&
+            !noHover && Boolean(vote_average) &&
               <p>
                 <AiFillStar style={{color: "orange"}} />
-                {vote_average}
+                {vote_average?.toString().slice(0, 3)}
               </p>
           }
 
