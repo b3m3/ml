@@ -3,9 +3,19 @@
   z-index: 10;
   left: 1.25rem;
   top: 1.25rem;
+  animation: identifier 1.5s;
 
   & svg {
     font-size: 2rem;
     border-radius: var(--radius-50p);
+  }
+}
+
+@keyframes identifier {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
   }
 }

@@ -9,14 +9,5 @@
     & li {
       min-width: 96px;
     }
-
-    &::-webkit-scrollbar {
-      height: .4rem;
-    }
-    
-    &::-webkit-scrollbar-thumb {
-      background-color: var(--gray-200);
-      border-radius: var(--radius-6);
-    }
   }
 }

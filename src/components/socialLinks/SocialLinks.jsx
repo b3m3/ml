@@ -8,6 +8,14 @@ import { RiInstagramFill } from 'react-icons/ri';
 
 import style from './social-links.module.scss';
 
+const links = [
+  {name: 'facebook_id', link: 'https://www.facebook.com/', Icon: FaFacebookSquare},
+  {name: 'imdb_id', link: 'https://www.imdb.com/title/', Icon: FaImdb},
+  {name: 'instagram_id', link: 'https://www.instagram.com/', Icon: RiInstagramFill},
+  {name: 'twitter_id', link: 'https://twitter.com/', Icon: FaTwitterSquare},
+  {name: 'tiktok_id', link: 'https://www.tiktok.com/@', Icon: TbBrandTiktok},
+]
+
 const SocialLinks = ({ type, id }) => {
   const dispatch =  useDispatch();
   const { socials } = useSelector(state => state.fetchData);
@@ -16,13 +24,6 @@ const SocialLinks = ({ type, id }) => {
     dispatch(fetchSocials({ type, id }));
   }, [dispatch, type, id]);
 
-  const links = [
-    {name: 'facebook_id', link: 'https://www.facebook.com/', Icon: FaFacebookSquare},
-    {name: 'imdb_id', link: 'https://www.imdb.com/title/', Icon: FaImdb},
-    {name: 'instagram_id', link: 'https://www.instagram.com/', Icon: RiInstagramFill},
-    {name: 'twitter_id', link: 'https://twitter.com/', Icon: FaTwitterSquare},
-    {name: 'tiktok_id', link: 'https://www.tiktok.com/@', Icon: TbBrandTiktok},
-  ]
 
   const renderLink = (name, linkPath, Icon) => {
     if (socials.res?.[`${name}`]) {

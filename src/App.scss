@@ -1,5 +1,23 @@
 @import './fonts/stylesheet.css';
 
+::-webkit-scrollbar {
+  width: .4rem;
+  height: .4rem;
+}
+ 
+::-webkit-scrollbar-track {
+  background-color: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: var(--gray-100);
+  border-radius: var(--radius-25);
+
+  &:hover {
+    background-color: var(--gray-200);
+  }
+}
+
 * {
   padding: 0;
   margin: 0;
@@ -26,8 +44,8 @@
   --red-300: #ED2B2A;
   --red-300-1: rgba(237, 43, 42, .1);
   --transition-3: .3s ease-out;
-  --radius-6: .375rem;
-  --radius-25: 1.5625rem;
+  --radius-6: 6px;
+  --radius-25: 25px;
   --radius-50p: 50%;
   --gradient-light-blue: linear-gradient(135deg, rgba(255,255,255,1) 0%, rgba(239,242,247,1) 100%);
 }
@@ -41,7 +59,7 @@ html {
 body {
   font-family: 'Gilroy', sans-serif;
   height: 100%;
-  font-size: 1rem;
+  font-size: 16px;
   font-weight: 400;
   background-repeat: no-repeat;
   background-attachment: fixed;
@@ -54,11 +72,11 @@ body {
 
 .App {
   display: grid;
-  grid-template: auto / 15.625rem minmax(17.8125rem, 1fr);
-  gap: 1.25rem;
+  grid-template: auto / 250px minmax(285px, 1fr);
+  gap: 20px;
   min-height: 100%;
 
-  @media screen and (max-width: 1024px) {
+  @media screen and (max-width: 64rem) {
     grid-template: auto / 1fr;
   }
 }
@@ -67,21 +85,21 @@ body {
   width: 100%;
   grid-column: 2 / 3;
 
-  @media screen and (max-width: 1024px) {
+  @media screen and (max-width: 64rem) {
     grid-column: unset;
   }
 }
 
 .container {
-  max-width: 73.4375rem;
+  max-width: 1175px;
   margin: 0 auto;
-  padding: 0 1rem;
+  padding: 0 16px;
 }
 
 .container-2 {
-  max-width: 82.5rem;
+  max-width: 1320px;
   margin: 0 auto;
-  padding: 0 1rem;
+  padding: 0 16px;
 }
 
 button {
@@ -94,7 +112,7 @@ h1 {
   line-height: 1;
   text-transform: uppercase;
   font-weight: 800;
-  font-size: calc(28px + calc(44 - 28) * ((100vw - 320px) / (2560 - 320)));
+  font-size: calc(1.75rem + calc(44 - 28) * ((100vw - 20rem) / (2560 - 320)));
 }
 
 h3 {

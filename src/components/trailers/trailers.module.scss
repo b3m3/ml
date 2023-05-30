@@ -10,6 +10,11 @@
       min-width: 10.125rem;
       height: 5.625rem;
 
+      @media screen and (max-width: 375px) {
+        width: 100%;
+        height: 10rem;
+      }
+
       & .more {
         position: absolute;
         z-index: 2;
@@ -38,7 +43,7 @@
         width: 2.5rem;
         height: 2.5rem;
         border-radius: var(--radius-50p);
-        border: 3px solid var(--blue-900);
+        border: 2px solid var(--blue-900);
 
         display: flex;
         justify-content: center;

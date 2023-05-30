@@ -10,7 +10,9 @@ const initialState = {
   cast: { loading: false, status: null, res: null },
   recommendations: { loading: false, status: null, res: null },
   reviews: { loading: false, status: null, res: null },
-  socials: { loading: false, status: null, res: null }
+  socials: { loading: false, status: null, res: null },
+  genresList: { loading: false, status: null, res: null },
+  discover: { loading: false, status: null, res: null }
 }
 
 export const fetchData = createAsyncThunk(
@@ -161,6 +163,34 @@ export const fetchSocials = createAsyncThunk(
   }
 )
 
+export const fetchDiscover = createAsyncThunk(
+  'fetch/fetchDiscover',
+  async ({ filters, type, page }, { rejectWithValue }) => {
+    try {
+      if (filters && type && page) {
+        const { data } = await axios.get(`/discover/${type}?api_key=${API_KEY}&language=en-US&page=${page}${filters}`);
+        return data;
+      }
+    } catch (error) {
+      return rejectWithValue(error)
+    }
+  }
+)
+
+export const fetchGenreslist = createAsyncThunk(
+  'fetch/fetchGenreslist',
+  async ({ type }, { rejectWithValue }) => {
+    try {
+      if (type) {
+        const { data } = await axios.get(`/genre/${type}/list?api_key=${API_KEY}&language=en-US`);
+        return data;
+      }
+    } catch (error) {
+      return rejectWithValue(error)
+    }
+  }
+)
+
 // Create extraReducer
 const createCase = (builder, func, name) => {
   builder.addCase(func.pending, (state) => {
@@ -212,6 +242,12 @@ const fetchDataSlice = createSlice({
 
     // Get socials
     createCase(builder, fetchSocials, 'socials');
+
+    // Get discover
+    createCase(builder, fetchDiscover, 'data');
+
+    // Get genres list
+    createCase(builder, fetchGenreslist, 'genresList');
   }
 })
 

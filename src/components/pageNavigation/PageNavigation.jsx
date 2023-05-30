@@ -5,15 +5,15 @@ import style from './page-navigation.module.scss';
 
 const PageNavigation = ({ totalPages, currentPage, category }) => {
   const { pathname } = useLocation();
-  const { query } = useParams();
+  const { query, filters } = useParams();
 
-  
   const type = getTypeFromPathname();
   const isSearch = pathname.indexOf('search') !== -1;
+  const isDiscover = Boolean(filters);
 
   const total = totalPages && totalPages > 500 ? 500 : totalPages;
 
-  const link = isSearch ? `/${type}/search/${query}/` : `/${type}/${category}/`;
+  const link = isSearch ? `/${type}/search/${query}/` : isDiscover ? `/${type}/discover/${filters}/` : `/${type}/${category}/`;
   const activeStyle = {color: 'var(--blue-400)'};
 
   return (

@@ -8,6 +8,7 @@ const GeneralInfoList = ({
   deathday, 
   status, 
   first_air_date,
+  release_date,
   air_date,
   episode_run_time,
   season_number,
@@ -21,10 +22,11 @@ const GeneralInfoList = ({
       { episode_number && <li>{`Episode ${episode_number}`}</li> }
       { production_countries?.map(({ name }, i) => <li key={i}>{name}</li>) }
       { status && <li>{status}</li>}
+      { release_date && <li>{release_date.slice(0, 4)}</li> }
       { first_air_date && <li>{first_air_date.slice(0, 4)}</li> }
       { air_date && <li>{air_date.slice(0, 4)}</li> }
       { episode_run_time && <li>{episode_run_time?.[0]}min</li> }
-      { runtime && <li>{runtime}min</li> }
+      { Boolean(runtime) && <li>{runtime}min</li> }
       { place_of_birth && <li>{place_of_birth}</li> }
       {
         birthday && 

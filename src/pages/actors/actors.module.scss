@@ -7,9 +7,21 @@
 
 .body {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(125px, 1fr));
+  grid-template: auto / repeat(7, 1fr);
   grid-column-gap: .75rem;
   grid-row-gap: 1.5625rem;
+
+  @media screen and (max-width: 768px) {
+    grid-template: auto / repeat(5, 1fr);
+  }
+
+  @media screen and (max-width: 600px) {
+    grid-template: auto / repeat(4, 1fr);
+  }
+
+  @media screen and (max-width: 450px) {
+    grid-template: auto / repeat(2, 1fr);
+  }
 }
 
 .bottom {

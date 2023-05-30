@@ -24,7 +24,8 @@ const Router = () => {
         { index: true, element: <Movies /> },
         { path: ':id', element: <InfoMovie /> },
         { path: ':category/:page', element: <Movies /> },
-        { path: 'search/:query/:page', element: <Search /> }
+        { path: 'search/:query/:page', element: <Search /> },
+        { path: 'discover/:filters/:page', element: <Movies /> },
       ]
     },
     { 
@@ -32,6 +33,7 @@ const Router = () => {
       children: [
         { index: true, element: <TvShows /> },
         { path: 'search/:query/:page', element: <Search /> },
+        { path: 'discover/:filters/:page', element: <TvShows /> },
         { 
           path: ':id', 
           children: [
