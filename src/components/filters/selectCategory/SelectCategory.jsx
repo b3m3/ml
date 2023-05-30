@@ -6,10 +6,15 @@ import { MdArrowDropDown } from 'react-icons/md';
 
 import style from './select-category.module.scss';
 
-const SelectCategory = ({ categories, setFavoriteType }) => {
+const categoriesMovie = ['Popular', 'Now playing', 'Upcoming', 'Top rated'];
+const categoriesTv = ['Popular', 'On the air', 'Airing today', 'Top rated'];
+
+const SelectCategory = () => {
   const { category } = useParams();
 
   const type = getTypeFromPathname();
+  const categories = type === 'tv' ? categoriesTv : categoriesMovie;
+
   const setCategory = category ? pathToStr(category) : categories[0];
 
   const [isOpen, setIsOpen] = useState(false);
@@ -30,7 +35,6 @@ const SelectCategory = ({ categories, setFavoriteType }) => {
                 key={i} 
                 onClick={() => {
                   setCurrentCategory(el);
-                  setFavoriteType(el)
                   setIsOpen(false);
                 }}
               >
