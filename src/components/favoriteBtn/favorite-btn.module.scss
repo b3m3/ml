@@ -33,12 +33,14 @@
     transition: var(--transition-3);
   }
 
-  &:hover {
-    -webkit-backdrop-filter: blur(2px);
-    backdrop-filter: blur(2px);
-
-    & svg {
-      opacity: .85;
+  @media (any-hover: hover) {
+    &:hover {
+      -webkit-backdrop-filter: blur(3px);
+      backdrop-filter: blur(3px);
+  
+      & svg {
+        opacity: .85;
+      }
     }
   }
 }

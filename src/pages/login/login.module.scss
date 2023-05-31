@@ -26,6 +26,7 @@
   display: grid;
   gap: .9375rem;
   grid-template: repeat(3, 1fr) / repeat(4, 1fr);
+  animation: identifier 1.2s linear;
   
   &::before {
     position: absolute;
@@ -144,5 +145,14 @@
     &:hover {
       opacity: .9;
     }
+  }
+}
+
+@keyframes identifier {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
   }
 }

@@ -8,13 +8,27 @@
   font-weight: 600;
   display: flex;
   align-items: center;
+  justify-content: center;
   gap: .3125rem;
   color: var(--blue-400);
 
   @media screen and (max-width: 375px) {
     justify-content: center;
   }
-  
+
+  & p {
+    display: flex;
+    align-items: center;
+    gap: .3125rem;
+    white-space: nowrap;
+    
+    & span {
+      font-size: .8125rem;
+      color: var(--blue-900);
+      font-weight: 300;
+    }
+  }
+
   & svg {
     font-size: 1.25rem;
   }
@@ -29,10 +43,10 @@
   padding: 0 .625rem;
 
   background: rgba(255, 255, 255, .75);
-  -webkit-backdrop-filter: blur(10px);
   backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
   border-radius: var(--radius-6);
-  border: 0px solid var(--gray-50);
+  border: 0px solid transparent;
   transition: var(--transition-3);
   height: 0;
   overflow: hidden;
@@ -41,6 +55,7 @@
 
   &.open {
     height: unset;
+    min-height: 1px;
     padding: .625rem;
     border: 1px solid var(--gray-100);
     pointer-events: all;

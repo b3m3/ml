@@ -3,6 +3,7 @@ import { useEffect } from 'react';
 import { getFavoriteMovies, getFavoriteTv } from '../../../store/slices/favoriteSlice';
 
 import { IMG_ROOT } from '../../../constants/api';
+import { AiOutlineUser } from 'react-icons/ai';
 
 import style from './user.module.scss';
 
@@ -32,7 +33,11 @@ const User = () => {
         isAuth &&
           <div className={style.wrapp}>
             <div className={style.image}>
-              <img src={imgUrl && `${IMG_ROOT}/w500${imgUrl}`} alt="User avatar"/>
+              {
+                imgUrl 
+                  ? <img src={`${IMG_ROOT}/w500${imgUrl}`} alt="User avatar"/>
+                  : <AiOutlineUser />
+              }  
             </div>
 
             <div className={style.info}>

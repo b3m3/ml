@@ -9,6 +9,7 @@
   font-weight: 600;
   display: flex;
   align-items: center;
+  justify-content: center;
   gap: .3125rem;
   color: var(--blue-400);
 
@@ -25,9 +26,9 @@
   width: 100%;
   padding: 0 .625rem;
 
-  background: rgba(255, 255, 255, .75);
-  -webkit-backdrop-filter: blur(10px);
   backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  background: rgba(255, 255, 255, .75);
   border-radius: var(--radius-6);
   border: 1px solid transparent;
   transition: var(--transition-3);
@@ -36,8 +37,10 @@
   text-align: center;
   pointer-events: none;
 
+
   &.open {
     height: unset;
+    min-height: 1px;
     padding: .625rem;
     border: 1px solid var(--gray-100);
     pointer-events: all;

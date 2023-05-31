@@ -31,6 +31,7 @@ const ReleaseDate = ({ handleOptions, getParam }) => {
       >
         <p>Release date</p>
         <MdArrowDropDown />
+        <span>{min}-{max}</span>
       </div>
 
       <div className={`${style.body} ${isOpen ? style.open : ''}`}>

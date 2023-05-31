@@ -6,17 +6,25 @@ import TrendingCardMovie from './trendingCardMovie/TrendingCardMovie';
 import Error from '../../../components/error/Error';
 import Loading from '../../../components/loading/Loading';
 
+import { MdKeyboardArrowRight } from 'react-icons/md';
+
 import style from './trending-movies.module.scss';
 
 const TrendingMovies = () => {
   const [movieSlice, setMovieSlice] = useState(1);
   const dispatch = useDispatch();
 
+  const maxSlides = 5;
+
   const { trendingMovies } = useSelector(state => state.trending)
 
   useEffect(() => {
     dispatch(fetchTrendingMovies())
   }, [dispatch]);
+
+  const handleNext = () => {
+    setMovieSlice(p => p === maxSlides ? 1 : p + 1)
+  }
 
   return (
     <>
@@ -33,7 +41,7 @@ const TrendingMovies = () => {
 
             <ul className={style.navigation}>
               {
-                [...Array(5)].map((_, i) => {
+                [...Array(maxSlides)].map((_, i) => {
                   return (
                     <li 
                       key={i} 
@@ -45,6 +53,13 @@ const TrendingMovies = () => {
                 })
               }
             </ul>
+
+            <i 
+              className={style.next}
+              onClick={handleNext}
+            >
+              <MdKeyboardArrowRight />
+            </i>
           </div>
       }
 

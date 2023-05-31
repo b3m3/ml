@@ -20,7 +20,7 @@ const TvShows = () => {
     if (!filters) {
       const doc = {
         type: 'tv',
-        category: category ? category : 'popular',
+        category: category ? category : 'top_rated',
         page: page ? page : 1
       }
       

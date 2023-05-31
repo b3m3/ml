@@ -25,7 +25,10 @@ const SortBy = ({ handleOptions, options }) => {
         className={style.top} 
         onClick={() => setIsOpen(a => !a)}
       >
-        <p>{selectedFilter}</p>
+        <p>
+          <span>Sort by:</span>
+          {selectedFilter}
+        </p>
         <MdArrowDropDown />
       </div>
 

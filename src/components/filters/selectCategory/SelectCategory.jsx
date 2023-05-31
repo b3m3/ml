@@ -7,7 +7,7 @@ import { MdArrowDropDown } from 'react-icons/md';
 import style from './select-category.module.scss';
 
 const categoriesMovie = ['Popular', 'Now playing', 'Upcoming', 'Top rated'];
-const categoriesTv = ['Popular', 'On the air', 'Airing today', 'Top rated'];
+const categoriesTv = ['Top rated', 'Popular', 'On the air', 'Airing today'];
 
 const SelectCategory = () => {
   const { category } = useParams();

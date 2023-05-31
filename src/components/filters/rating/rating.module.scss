@@ -9,6 +9,7 @@
   font-weight: 600;
   display: flex;
   align-items: center;
+  justify-content: center;
   gap: .3125rem;
   color: var(--blue-400);
 
@@ -30,15 +31,13 @@
     position: absolute;
     font-size: 11px;
     content: '';
-    top: -12px;
-    left: 48px;
-    width: 17px;
-    height: 17px;
+    top: -13px;
+    right: 30%;
+    padding: 1px 3px;
     background: var(--blue-400);
-    border-radius: var(--radius-50p);
+    border-radius: var(--radius-6);
     color: var(--gray-100);
     display: flex;
-    justify-content: center;
     align-items: center;
   }
 }
@@ -52,10 +51,10 @@
   padding: 0 .625rem;
 
   background: rgba(255, 255, 255, .75);
-  -webkit-backdrop-filter: blur(10px);
   backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
   border-radius: var(--radius-6);
-  border: 1px solid var(--gray-50);
+  border: 0px solid transparent;
   transition: var(--transition-3);
   overflow: hidden;
   height: 0;
@@ -70,6 +69,7 @@
 
   &.open {
     height: unset;
+    min-height: 1px;
     padding: .625rem;
     border: 1px solid var(--gray-100);
     pointer-events: all;

@@ -1,8 +1,10 @@
 .wrapp {
   max-width: 37.5rem;
+  overflow: hidden;
 
   @media screen and (max-width: 768px) {
     max-width: unset;
+    width: 100%;
   }
 
   & ul {
@@ -42,7 +44,7 @@
 
 .body {
   position: relative;
-  width: 100%;
+  min-width: 0;
   background: var(--gradient-light-blue);
   padding: .625rem;
   border-radius: var(--radius-6);

@@ -29,6 +29,7 @@ const Rating = ({ handleOptions, getParam }) => {
       >
         <p>Rating</p>
         <MdArrowDropDown />
+        <span>{min}-{max}</span>
       </div>
 
       <div className={`${style.body} ${isOpen ? style.open : ''}`}>
